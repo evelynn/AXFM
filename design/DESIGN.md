@@ -1,0 +1,119 @@
+---
+version: alpha
+name: AXFM Default
+description: Hansol AXFM 기본 디자인 시스템 (placeholder — 사용자 제공 DESIGN.md로 교체 예정)
+colors:
+  primary: "#1B4D8B"
+  secondary: "#5A6472"
+  tertiary: "#E8590C"
+  neutral: "#F6F7F9"
+  surface: "#FFFFFF"
+  text: "#1A1C1E"
+  text-muted: "#6C7278"
+  success: "#2F9E44"
+  danger: "#C92A2A"
+  border: "#E2E5E9"
+typography:
+  h1:
+    fontFamily: Pretendard, sans-serif
+    fontSize: 32px
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: -0.02em
+  h2:
+    fontFamily: Pretendard, sans-serif
+    fontSize: 24px
+    fontWeight: 600
+    lineHeight: 1.3
+  body-md:
+    fontFamily: Pretendard, sans-serif
+    fontSize: 16px
+    fontWeight: 400
+    lineHeight: 1.6
+  body-sm:
+    fontFamily: Pretendard, sans-serif
+    fontSize: 14px
+    fontWeight: 400
+    lineHeight: 1.5
+  mono:
+    fontFamily: "D2Coding, Consolas, monospace"
+    fontSize: 14px
+    fontWeight: 400
+    lineHeight: 1.5
+rounded:
+  sm: 6px
+  md: 10px
+  lg: 16px
+  full: 9999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.md}"
+    padding: 12px 20px
+  card:
+    backgroundColor: "{colors.surface}"
+    borderColor: "{colors.border}"
+    rounded: "{rounded.lg}"
+    padding: "{spacing.lg}"
+  badge-online:
+    backgroundColor: "{colors.success}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.full}"
+  badge-offline:
+    backgroundColor: "{colors.text-muted}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.full}"
+---
+
+# AXFM Default Design System
+
+## Overview
+
+Hansol AXFM 솔루션들의 기본 디자인 시스템입니다. 업무 도구에 맞는 차분하고 명료한 인상을 목표로 합니다.
+이 파일은 **placeholder**이며, 사용자 제공 DESIGN.md가 도착하면 이 파일을 교체합니다.
+(교체해도 코드 변경은 필요 없습니다 — 모든 솔루션은 이 폴더를 참조합니다.)
+
+## Colors
+
+- **Primary**는 주요 액션(버튼, 링크, 활성 상태)에만 사용합니다. 넓은 배경에 쓰지 않습니다.
+- **Neutral/Surface**가 화면의 대부분을 차지해야 합니다 — 업무 도구는 콘텐츠가 주인공입니다.
+- 상태 표현: 온라인/성공 = success, 오류/위험 = danger. 그 외 상태색을 임의로 만들지 않습니다.
+
+## Typography
+
+- 본문은 body-md(16px)를 기본으로, 표·보조 정보만 body-sm을 씁니다.
+- 화면당 h1은 하나. 섹션 제목은 h2.
+- 코드·ID·경로 표기는 mono를 씁니다.
+
+## Layout
+
+- 기본 여백 단위는 spacing 토큰만 사용합니다 (임의 px 금지).
+- 콘텐츠 최대 폭 960px, 중앙 정렬. 카드 사이 간격은 spacing.md.
+
+## Elevation & Depth
+
+- 그림자는 카드 1단계만: `0 1px 3px rgba(0,0,0,0.08)`. 그 이상의 깊이 표현은 쓰지 않습니다.
+
+## Shapes
+
+- 모서리는 rounded 토큰만 사용. 버튼·입력은 md, 카드류는 lg, 뱃지·아바타는 full.
+
+## Components
+
+- **button-primary**: 화면당 1~2개까지. 나머지 버튼은 테두리형(secondary)으로.
+- **card**: 정보 블록의 기본 단위. border 1px + rounded.lg.
+- **badge-online / badge-offline**: 솔루션 연결 상태 표시 전용.
+
+## Do's and Don'ts
+
+- ✅ 토큰만 사용한다 (색상·간격·모서리에 임의 값 금지)
+- ✅ 한 화면에 강조는 한 곳만
+- ❌ 그라데이션·과한 애니메이션·이모지 남용 금지 (업무 도구의 신뢰감 우선)
+- ❌ AI 생성 티가 나는 보라색 그라데이션 히어로 금지

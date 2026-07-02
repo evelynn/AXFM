@@ -1,0 +1,116 @@
+/* AXFM 디자인 시스템 준수 — 색상·간격·모서리는 axfm-design.css 의 토큰 변수만 사용합니다.
+   (임의 색상/px 금지 — 규칙: 플러그인 design/DESIGN.md) */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--axfm-colors-neutral);
+  color: var(--axfm-colors-text);
+  font-family: var(--axfm-typography-body-md-font-family);
+  font-size: var(--axfm-typography-body-md-font-size);
+  line-height: var(--axfm-typography-body-md-line-height);
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--axfm-spacing-xl) var(--axfm-spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--axfm-spacing-md);
+}
+
+h1 {
+  font-family: var(--axfm-typography-h1-font-family);
+  font-size: var(--axfm-typography-h1-font-size);
+  font-weight: var(--axfm-typography-h1-font-weight);
+  line-height: var(--axfm-typography-h1-line-height);
+  letter-spacing: var(--axfm-typography-h1-letter-spacing);
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--axfm-typography-h2-font-family);
+  font-size: var(--axfm-typography-h2-font-size);
+  font-weight: var(--axfm-typography-h2-font-weight);
+  line-height: var(--axfm-typography-h2-line-height);
+  margin: 0 0 var(--axfm-spacing-sm);
+}
+
+.card {
+  background: var(--axfm-components-card-background-color);
+  border: 1px solid var(--axfm-components-card-border-color);
+  border-radius: var(--axfm-components-card-rounded);
+  padding: var(--axfm-components-card-padding);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--axfm-components-badge-online-rounded);
+  font-size: var(--axfm-typography-body-sm-font-size);
+  color: var(--axfm-components-badge-online-text-color);
+  vertical-align: middle;
+}
+
+.badge.online {
+  background: var(--axfm-components-badge-online-background-color);
+}
+
+.badge.offline {
+  background: var(--axfm-components-badge-offline-background-color);
+  color: var(--axfm-components-badge-offline-text-color);
+}
+
+.btn-primary {
+  background: var(--axfm-components-button-primary-background-color);
+  color: var(--axfm-components-button-primary-text-color);
+  border: none;
+  border-radius: var(--axfm-components-button-primary-rounded);
+  padding: var(--axfm-components-button-primary-padding);
+  font-size: var(--axfm-typography-body-md-font-size);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: var(--axfm-colors-surface);
+  color: var(--axfm-colors-primary);
+  border: 1px solid var(--axfm-colors-primary);
+  border-radius: var(--axfm-components-button-primary-rounded);
+  padding: var(--axfm-components-button-primary-padding);
+  font-size: var(--axfm-typography-body-md-font-size);
+  cursor: pointer;
+}
+
+.muted {
+  color: var(--axfm-colors-text-muted);
+  font-size: var(--axfm-typography-body-sm-font-size);
+}
+
+.mono {
+  font-family: var(--axfm-typography-mono-font-family);
+  font-size: var(--axfm-typography-mono-font-size);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--axfm-spacing-sm);
+  flex-wrap: wrap;
+}
+
+ul.plain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--axfm-spacing-xs);
+}

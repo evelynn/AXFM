@@ -1,0 +1,24 @@
+# __AXFM_NAME__ — AXFM 솔루션
+
+이 프로젝트는 Hansol AXFM 프레임워크로 만든 솔루션입니다. (종류: __AXFM_TYPE__)
+
+## 이 프로젝트의 사용자에 대해
+- 개발 경험이 적을 수 있습니다. 전문용어에는 한 줄 설명을 붙이고, 변경 후에는 항상 "눈으로 확인하는 방법"을 안내하세요.
+- 사용자가 무엇을 해야 할지 모르는 것 같으면 `/axfm-guide` 를 먼저 제안하세요.
+
+## AXFM 규약 (반드시 준수)
+- **연동은 실시간 서버 호출이 아닙니다.** 다른 솔루션과는 공통 함수(`readFrom`/`writeShared`, 파이썬 `axfm.read_from`/`axfm.write_shared`)와 스냅샷 파일(`.axfm/data/`)로 주고받습니다.
+- 데이터/함수를 제공·수신하는 코드를 추가·변경하면 `axfm.json`의 provides/accepts 와 `axfm/interface.md` 를 **반드시 함께 갱신**합니다 (다른 솔루션은 interface.md 만 보고 연동합니다).
+- `axfm.json` 의 `id` 는 수정하지 않습니다 (레지스트리 키).
+- `.axfm/` 폴더는 절대 git 에 커밋하지 않습니다 (업무 데이터·상태 유출 방지 — .gitignore 로 이미 제외됨).
+- `lib/axfm/`(웹앱) · `axfm/*.py`(파이썬) 는 프레임워크 소유 모듈입니다. 직접 수정하지 말고, 업데이트가 필요하면 `/axfm-guide` 가 재동기화합니다.
+  단, **`axfm/interface.md` 는 여러분(사용자) 소유**입니다 — 데이터/함수를 바꿀 때마다 항상 갱신하세요 (재동기화가 이 파일을 건드리지 않습니다).
+
+## UI/디자인 작업 규칙
+- 화면·스타일 작업 전 플러그인의 `design/*.md`(DESIGN.md) 토큰을 따릅니다. 웹앱은 `app/axfm-design.css` 의 `--axfm-*` 변수만 사용하고 임의 색상·간격·폰트를 쓰지 않습니다.
+
+## 자주 쓰는 명령
+- 실행: __AXFM_RUN__
+- 개발 가이드: /axfm-guide (다음 할 일) · /axfm-feature (기능 추가) · /axfm-connect (연동) · /axfm-publish (공유)
+
+<!-- axfm-module-version: __AXFM_MODULE_VERSION__ — /axfm-guide 가 버전 드리프트 감지에 사용 -->

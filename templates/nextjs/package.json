@@ -1,0 +1,22 @@
+{
+  "name": "__AXFM_ID__",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port __AXFM_PORT__",
+    "build": "next build",
+    "start": "next start --port __AXFM_PORT__",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^15.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}

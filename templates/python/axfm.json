@@ -1,0 +1,10 @@
+{
+  "axfm": "2",
+  "id": "__AXFM_ID__",
+  "name": "__AXFM_NAME__",
+  "description": "__AXFM_DESC__",
+  "type": "python",
+  "owner": "__AXFM_OWNER__",
+  "provides": ["daily-report"],
+  "accepts": ["task"]
+}

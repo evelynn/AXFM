@@ -1,0 +1,14 @@
+node_modules/
+.next/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+# 내부 개발 상태 — 플러그인 배포물에 포함하지 않음
+.karin/
+.bkit/
+.claude/
+# 테스트 작업 공간 (실패 시 잔존 가능)
+.test-interop/
+.test-cross-stack/

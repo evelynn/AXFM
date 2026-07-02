@@ -1,0 +1,32 @@
+---
+name: axfm-feature
+description: >-
+  AXFM 솔루션에 새 기능을 추가한다. 사용자가 "기능 넣고 싶어", "버튼 만들어줘",
+  "~하게 해줘", "추가해줘" 라고 하거나 /axfm-feature 를 입력하면 사용.
+  작게 만들고, 연동 계약(interface.md)을 함께 갱신하고, 눈으로 확인시킨다.
+---
+
+# 기능 추가 가이드
+
+## 1단계: 요구 확인 (질문 최대 2개)
+- 사용자의 말을 "~하면 ~된다" 한 문장으로 재진술하고 맞는지 확인한다.
+- 크면 쪼갠다: "우선 이 부분부터 만들고 눈으로 확인한 뒤 다음으로 가요."
+
+## 2단계: 구현
+- 기존 템플릿 패턴을 따른다 (웹앱: `app/`, `lib/`; 스크립트: `main.py`, `lib/`). 새 라이브러리 추가는 꼭 필요할 때만.
+- **디자인 규칙**: 화면/스타일 작업이면 먼저 `${CLAUDE_PLUGIN_ROOT}/design/*.md`(DESIGN.md 등)를 읽고 토큰만 사용한다. 임의 색상·간격·폰트 금지. 웹앱은 `app/axfm-design.css`의 `--axfm-*` 변수를 쓴다.
+- 공통 유틸이 필요하면 `lib/axfm/common`(웹앱)·`axfm.common`(파이썬)을 먼저 확인해 재사용한다.
+
+## 3단계: 연동 계약 동기화 (중요 — 빠뜨리면 다른 솔루션이 연동 못 함)
+- 데이터/함수를 새로 제공(provides)하거나 수신(accepts)하게 됐다면:
+  - `axfm.json`의 `provides`/`accepts` 배열 갱신.
+  - `axfm/interface.md`의 프론트매터(functions/accepts)와 본문 설명 갱신 — `sample`(예시)을 반드시 채운다.
+- 제공 데이터는 공통 함수로 내보낸다: 웹앱 `writeShared("<name>", data)`, 파이썬 `axfm.write_shared("<name>", data)`.
+
+## 4단계: 눈으로 검증 (필수 — 생략 금지)
+- 웹앱: dev 서버 확인 후 "브라우저에서 ~를 눌러 ~가 보이는지 확인해주세요."
+- 스크립트: `python main.py`(또는 start) 실행 결과를 함께 읽는다.
+- 연동 데이터 변경이면 스냅샷 파일(`.axfm/data/<name>.json`)이 갱신됐는지 확인.
+
+## 5단계: 마무리
+- 첫 기능이면 progress.json 의 first_feature 를 true 로 → "첫 기능 완성! 다른 솔루션과 연결해볼까요? /axfm-connect" (2줄 이내, 이모지 최대 1개).

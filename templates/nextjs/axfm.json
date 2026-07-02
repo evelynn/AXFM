@@ -1,0 +1,10 @@
+{
+  "axfm": "2",
+  "id": "__AXFM_ID__",
+  "name": "__AXFM_NAME__",
+  "description": "__AXFM_DESC__",
+  "type": "nextjs",
+  "owner": "__AXFM_OWNER__",
+  "provides": ["today-menu"],
+  "accepts": ["feedback"]
+}
