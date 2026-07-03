@@ -33,6 +33,14 @@
 - **DEC-7 스킬 9종 유지**: 축소(9→4~5)는 파일럿 실측 데이터로 판단(v1.1 보류). 이번 릴리스는 설치 성립에 집중(P10).
 - **DEC-8 버전·형상**: modules `2.0.0 → 2.0.1`(모듈 코드 변경), plugin `0.1.0 → 0.2.0`. git 저장소 초기화 +
   전체 커밋(배포 모델 성립 조건, P4).
+- **DEC-9 폴더 스코프 설치가 공식 경로** (2026-07-03 추가, 사용자 요구): 플러그인은 전역(user)이 아니라
+  **작업 폴더에만 적용**되도록 설치한다 — `claude plugin install axfm@hansol-axfm --scope project`
+  (프로젝트의 `.claude/settings.json` 에 `enabledPlugins` 기록, 팀 공유 가능. 개인 한정은 `--scope local`).
+  스코프 우선순위는 local > project > user. `/axfm-new` 스캐폴더가 새 솔루션 폴더에
+  `.claude/settings.json`(폴더 스코프 활성화)을 자동 생성하며, 이 파일은 git 에 커밋되어 팀원 clone 시
+  Claude Code 가 설치를 안내한다(v2.1.195+ 는 명시 설치 필요). 검증: 저장소 폴더에서 `claude plugin list`
+  → `Scope: project / enabled`, 무관한 폴더에서 → `disabled` 교차 확인 완료. README·quickstart·publish·
+  troubleshooting·pilot 문서를 이 경로로 통일.
 
 ## 2. 작업 항목 (파일 단위)
 

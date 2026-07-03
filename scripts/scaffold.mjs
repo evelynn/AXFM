@@ -168,6 +168,16 @@ writeFileSync(
   "utf8",
 );
 
+// 3.6) 폴더 스코프 플러그인 활성화 — axfm 스킬은 이 솔루션 폴더 안에서만 켜진다 (전역 오염 없음).
+//      팀원이 clone 하면 Claude Code 가 이 파일을 보고 설치를 안내한다 (마켓플레이스는 publish 안내문 참조).
+const claudeDir = join(dest, ".claude");
+mkdirSync(claudeDir, { recursive: true });
+writeFileSync(
+  join(claudeDir, "settings.json"),
+  JSON.stringify({ enabledPlugins: { "axfm@hansol-axfm": true } }, null, 2),
+  "utf8",
+);
+
 // 4) 레지스트리 등록 (원자적 — 규칙은 lib/registry-io.mjs 한 곳에)
 try {
   upsertEntry(entry);
@@ -179,8 +189,8 @@ try {
 const leftovers = assertNoPlaceholders(dest);
 if (leftovers.length) fail(`치환 안 된 플레이스홀더 잔존: ${leftovers.join(", ")}`);
 const mustExist = type === "nextjs"
-  ? ["axfm.json", "axfm/interface.md", "lib/axfm/index.ts", "app/page.tsx", "app/actions.ts", "app/axfm-design.css"]
-  : ["axfm.json", "axfm/interface.md", "axfm/__init__.py", "main.py"];
+  ? ["axfm.json", "axfm/interface.md", "lib/axfm/index.ts", "app/page.tsx", "app/actions.ts", "app/axfm-design.css", ".claude/settings.json"]
+  : ["axfm.json", "axfm/interface.md", "axfm/__init__.py", "main.py", ".claude/settings.json"];
 for (const f of mustExist) if (!existsSync(join(dest, f))) fail(`필수 파일 누락: ${f}`);
 
 console.log(JSON.stringify({ ok: true, id, name, type, dest, port, registered: true }, null, 2));

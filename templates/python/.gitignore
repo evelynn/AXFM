@@ -1,5 +1,7 @@
 # 주고받은 업무 데이터·진행 상태는 절대 커밋하지 않습니다 (유출·상태 오염 방지)
 .axfm/
+# .claude/settings.json 은 커밋 (팀원도 이 폴더에서 axfm 스킬 사용) — 개인 설정만 제외
+.claude/settings.local.json
 __pycache__/
 *.pyc
 .venv/

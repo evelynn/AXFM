@@ -8,13 +8,16 @@
   - Node 없으면: `winget install OpenJS.NodeJS.LTS`
   - Python 없으면: https://www.python.org 에서 설치 (설치 시 "Add to PATH" 체크)
 
-## 1. 플러그인 설치 (2줄)
-Claude Code 에서:
+## 1. 플러그인 설치 (터미널 2줄 — 작업 폴더에만 적용)
+터미널에서:
 ```
-/plugin marketplace add <사내 저장소 주소 또는 이 폴더 경로>
-/plugin install axfm@hansol-axfm
+claude plugin marketplace add <사내 저장소 주소 또는 이 폴더 경로>
+cd <작업 폴더>
+claude plugin install axfm@hansol-axfm --scope project
 ```
-> 이 화면이 보여야 정상: 설치 후 `/axfm-` 을 입력하면 axfm-new, axfm-guide … 목록이 뜹니다.
+> 플러그인은 **이 폴더에서만 켜집니다** (다른 프로젝트를 어지럽히지 않아요).
+> 이 화면이 보여야 정상: 그 폴더에서 `claude` 실행 후 `/axfm-` 을 입력하면 axfm-new, axfm-guide … 목록이 뜹니다.
+> 이후 `/axfm-new`로 만드는 솔루션 폴더에는 활성화 설정이 자동 포함됩니다.
 
 ## 2. 첫 솔루션 만들기
 ```

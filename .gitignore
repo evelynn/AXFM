@@ -8,7 +8,8 @@ Thumbs.db
 # 내부 개발 상태 — 플러그인 배포물에 포함하지 않음
 .karin/
 .bkit/
-.claude/
+# .claude/settings.json 은 커밋 (폴더 스코프 플러그인 활성화 공유) — 개인 설정만 제외
+.claude/settings.local.json
 # 테스트 작업 공간 (실패 시 잔존 가능)
 .test-interop/
 .test-cross-stack/
