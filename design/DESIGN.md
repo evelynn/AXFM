@@ -1,7 +1,7 @@
 ---
-version: alpha
-name: AXFM Default
-description: Hansol AXFM 기본 디자인 시스템 (placeholder — 사용자 제공 DESIGN.md로 교체 예정)
+version: "1.0"
+name: AXFM Standard
+description: Hansol AXFM 표준 디자인 시스템 (2026-07-03 오너 확정 — 모든 솔루션의 기준)
 colors:
   primary: "#1B4D8B"
   secondary: "#5A6472"
@@ -72,13 +72,13 @@ components:
     rounded: "{rounded.full}"
 ---
 
-# AXFM Default Design System
+# AXFM Standard Design System
 
 ## Overview
 
-Hansol AXFM 솔루션들의 기본 디자인 시스템입니다. 업무 도구에 맞는 차분하고 명료한 인상을 목표로 합니다.
-이 파일은 **placeholder**이며, 사용자 제공 DESIGN.md가 도착하면 이 파일을 교체합니다.
-(교체해도 코드 변경은 필요 없습니다 — 모든 솔루션은 이 폴더를 참조합니다.)
+Hansol AXFM 솔루션들의 **확정 표준** 디자인 시스템입니다 (2026-07-03 오너 확정). 업무 도구에 맞는
+차분하고 명료한 인상을 목표로 하며, 모든 AXFM 솔루션의 화면은 이 문서의 토큰만 사용합니다.
+(추후 브랜드 변경 시 이 파일을 교체하거나 `10-*.md` 오버라이드를 추가 — 코드 변경은 필요 없습니다.)
 
 ## Colors
 
