@@ -189,8 +189,8 @@ try {
 const leftovers = assertNoPlaceholders(dest);
 if (leftovers.length) fail(`치환 안 된 플레이스홀더 잔존: ${leftovers.join(", ")}`);
 const mustExist = type === "nextjs"
-  ? ["axfm.json", "axfm/interface.md", "lib/axfm/index.ts", "app/page.tsx", "app/actions.ts", "app/axfm-design.css", ".claude/settings.json"]
-  : ["axfm.json", "axfm/interface.md", "axfm/__init__.py", "main.py", ".claude/settings.json"];
+  ? ["axfm.json", "axfm/interface.md", "lib/axfm/index.ts", "app/page.tsx", "app/actions.ts", "app/axfm-design.css", ".claude/settings.json", ".claude/skills/solution-help/SKILL.md"]
+  : ["axfm.json", "axfm/interface.md", "axfm/__init__.py", "main.py", ".claude/settings.json", ".claude/skills/solution-help/SKILL.md"];
 for (const f of mustExist) if (!existsSync(join(dest, f))) fail(`필수 파일 누락: ${f}`);
 
 console.log(JSON.stringify({ ok: true, id, name, type, dest, port, registered: true }, null, 2));

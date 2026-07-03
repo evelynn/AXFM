@@ -17,6 +17,14 @@
 ## UI/디자인 작업 규칙
 - 화면·스타일 작업 전 플러그인의 `design/*.md`(DESIGN.md) 토큰을 따릅니다. 웹앱은 `app/axfm-design.css` 의 `--axfm-*` 변수만 사용하고 임의 색상·간격·폰트를 쓰지 않습니다.
 
+## 폴더 맵 — 이 폴더에 넣으면 이 폴더에서만 적용됩니다
+| 위치 | 역할 |
+|---|---|
+| `.claude/skills/` | 이 솔루션 전용 AI 스킬 — 폴더를 추가하면 즉시 `/이름` 으로 사용 가능 (예제: /solution-help) |
+| `axfm/interface.md` | 연동 계약서 — 다른 솔루션은 이것만 보고 연동 (사용자 소유, 항상 갱신) |
+| `.axfm/` | 주고받는 데이터·진행 상태 (git 커밋 금지) |
+| `docs/` | 문서·기획 (필요할 때 생성 — /axfm-idea 가 idea.md 를 여기에 저장) |
+
 ## 자주 쓰는 명령
 - 실행: __AXFM_RUN__
 - 개발 가이드: /axfm-guide (다음 할 일) · /axfm-feature (기능 추가) · /axfm-connect (연동) · /axfm-publish (공유)
