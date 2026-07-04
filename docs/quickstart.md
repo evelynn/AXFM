@@ -4,6 +4,7 @@
 
 ## 0. 준비 (관리자가 1회 세팅했다면 건너뛰기)
 - **Claude Code** 설치·로그인 완료 상태여야 합니다.
+- **작업 폴더는 영문 경로 + OneDrive 밖**에 만드세요 (예: `C:\work`). 바탕화면·문서 폴더는 한글 경로/동기화 문제가 생길 수 있어요.
 - 만들 종류에 따라: 웹앱이면 **Node.js 20+**, 스크립트면 **Python 3.10+**.
   - Node 없으면: `winget install OpenJS.NodeJS.LTS`
   - Python 없으면: https://www.python.org 에서 설치 (설치 시 "Add to PATH" 체크)
