@@ -11,7 +11,7 @@
 ## 1. 플러그인 설치 (터미널 2줄 — 작업 폴더에만 적용)
 터미널에서:
 ```
-claude plugin marketplace add <사내 저장소 주소 또는 이 폴더 경로>
+claude plugin marketplace add evelynn/AXFM
 cd <작업 폴더>
 claude plugin install axfm@hansol-axfm --scope project
 ```

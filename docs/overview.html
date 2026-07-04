@@ -69,7 +69,7 @@
     <p>준비물: <strong>Claude Code</strong>(로그인 완료) · 웹앱을 만들려면 <strong>Node.js 20+</strong> · 자동화 스크립트를 만들려면 <strong>Python 3.10+</strong></p>
 
     <h3>① 마켓플레이스 등록 (PC당 최초 1회)</h3>
-    <pre><code>claude plugin marketplace add F:\AI_MAKE\hansol-axfm     ← 또는 사내 git 저장소 주소</code></pre>
+    <pre><code>claude plugin marketplace add evelynn/AXFM     ← 공식 저장소 (github.com/evelynn/AXFM)</code></pre>
 
     <h3>② 작업 폴더에서 설치</h3>
     <pre><code>cd &lt;작업 폴더&gt;
@@ -157,7 +157,7 @@ claude plugin install axfm@hansol-axfm --scope project</code></pre>
     <h2>7. 팀원이 내 솔루션을 받는 법</h2>
     <ol class="steps">
       <li><div><span class="mono">git clone &lt;주소&gt;</span> → <span class="mono">cd &lt;폴더&gt;</span></div></li>
-      <li><div>(최초 1회) <span class="mono">claude plugin marketplace add &lt;사내 저장소&gt;</span> → <span class="mono">claude plugin install axfm@hansol-axfm --scope project</span></div></li>
+      <li><div>(최초 1회) <span class="mono">claude plugin marketplace add evelynn/AXFM</span> → <span class="mono">claude plugin install axfm@hansol-axfm --scope project</span></div></li>
       <li><div>실행 — 웹앱 <span class="mono">npm install && npm run dev</span> / 스크립트 <span class="mono">.\start.ps1</span></div></li>
       <li><div>같은 폴더에서 <span class="mono">claude</span> → <span class="mono">/axfm-guide</span> — 자동으로 등록되고 연동 준비 완료</div></li>
     </ol>

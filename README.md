@@ -7,11 +7,12 @@
   (연동 범위는 **같은 PC** — 팀원 솔루션은 clone 받아 내 PC에서 실행하면 이웃이 됩니다. 실시간 서버 없음.)
 - **배우기**: `/axfm-guide`가 지금 할 일을 딱 하나씩 알려줍니다.
 
-## 설치 (터미널 2줄 — **작업 폴더에만 적용**)
+## 설치 (터미널 — **작업 폴더에만 적용**)
 
 ```
-claude plugin marketplace add <이 저장소 git URL 또는 로컬 경로>
-cd <작업 폴더>  &&  claude plugin install axfm@hansol-axfm --scope project
+claude plugin marketplace add evelynn/AXFM
+cd <작업 폴더>
+claude plugin install axfm@hansol-axfm --scope project
 ```
 
 플러그인은 **설치한 폴더에서만 활성화**됩니다(전역 오염 없음). 다른 프로젝트에는 스킬이 나타나지 않습니다.

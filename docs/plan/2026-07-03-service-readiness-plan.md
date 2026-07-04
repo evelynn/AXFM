@@ -38,7 +38,7 @@
 
 | # | 항목 | 근거 | 비용 |
 |---|---|---|---|
-| 1-1 | **배포 채널 실체화**: 사내 canonical git 원격 확정(오너), placeholder 일괄 치환, `CHANGELOG.md`, v0.2.0 태그 소급, 릴리스 절차 문서(버전 3축 일관성 검사 포함) | OPS-B1 | 소~중 |
+| 1-1 | **배포 채널 실체화**: canonical git 원격 확정, placeholder 일괄 치환, `CHANGELOG.md`, v0.2.0 태그 소급, 릴리스 절차 문서(버전 3축 일관성 검사 포함) — **2026-07-04 대부분 완료**: github.com/evelynn/AXFM (공개) + CHANGELOG + v0.2.0 태그 + placeholder 치환. 잔여: 릴리스 절차 문서·버전 일관성 검사 | OPS-B1 | 소~중 |
 | 1-2 | **배포 키트**: 실제 주소가 박힌 팀원 안내문, Claude Code 설치~로그인 스크린샷 가이드, `check-env.mjs`(claude/Node/Python/npm/마켓플레이스 일괄 점검) | UX-B2 | 중 |
 | 1-3 | **publish-check.mjs**: 스테이징에 `.axfm/`·`.env`·비밀 패턴 결정적 검사 — publish 스킬의 전제 조건으로 | SEC-B1 | 소 |
 | 1-4 | **게이트 확장**: 스킬 린트(`test-skills.mjs` — 스크립트 경로·플래그·상호참조 정합), register/sync 게이트(`test-scripts.mjs`), interface 파서 골든 케이스(양 스택), 한글+공백 경로 E2E 변형, 버전 일관성 검사 | QA-B1·M1·M3·M5 | 중 |

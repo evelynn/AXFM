@@ -8,8 +8,8 @@
 - [ ] Claude Code 설치·로그인 완료
 - [ ] Node.js 20+ (웹앱 트랙 시) / Python 3.10+ (스크립트 트랙 시)
 - [ ] **npm 조달 경로 확정** — 사내망에서 `npm install` 이 되는지. 안 되면 사내 레지스트리 `.npmrc` 배포 또는 Python 트랙으로 파일럿
-- [ ] 사내 git 저장소 접근(자격증명) 설정 — `/plugin marketplace add` 첫 관문
-- [ ] 플러그인 저장소 주소 안내문 준비
+- [ ] git 저장소 접근(자격증명) 설정 — `claude plugin marketplace add` 첫 관문
+- [x] 플러그인 공식 저장소 확정: **github.com/evelynn/AXFM** (2026-07-04 공개) — 안내문의 주소는 `evelynn/AXFM`
 
 ## 팀원 실측 시나리오 (스톱워치)
 | 단계 | 명령 | 통과 기준 |
