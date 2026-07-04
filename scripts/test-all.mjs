@@ -29,6 +29,8 @@ const ps1Check =
 const steps = [
   ["디자인 토큰 검증", process.execPath, [join(ROOT, "scripts", "export-design.mjs"), "--check"]],
   ["문서 게이트 (PS5.1 '&&'·pushData 금지)", process.execPath, [join(ROOT, "scripts", "test-docs.mjs")]],
+  ["스킬 린트 (지시문-스크립트 정합)", process.execPath, [join(ROOT, "scripts", "test-skills.mjs")]],
+  ["스크립트 게이트 (register/sync/버전 일관성)", process.execPath, [join(ROOT, "scripts", "test-scripts.mjs")]],
   ...(hasPowershell && ps1Files.length
     ? [["PowerShell 5.1 파서 검사 (템플릿 .ps1)", "powershell", ["-NoProfile", "-Command", ps1Check]]]
     : []),

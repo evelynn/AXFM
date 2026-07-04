@@ -13,3 +13,5 @@ Thumbs.db
 # 테스트 작업 공간 (실패 시 잔존 가능)
 .test-interop/
 .test-cross-stack/
+.test-scripts/
+.test-krpath/
