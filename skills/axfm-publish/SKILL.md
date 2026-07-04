@@ -7,6 +7,13 @@ description: >-
 
 # 팀 공유 준비
 
+## 0단계: 유출 자동 점검 (필수 — 통과 전에는 공유 진행 금지)
+```
+node "${CLAUDE_PLUGIN_ROOT}/scripts/publish-check.mjs" --dest "<프로젝트 경로>"
+```
+- 실패 항목이 있으면 그 사유를 그대로 보여주고 함께 해결한 뒤 재실행한다 (`.axfm/`·`.env`·비밀 패턴 검사).
+- git 미초기화면 2단계의 git init 후 이 점검을 다시 실행한다.
+
 ## 1단계: 공유 준비 점검 (체크리스트 출력 후 함께 채움)
 - [ ] README 에 3줄 이상: 무엇을 하는 도구인지 / 실행법 / 필요한 연동 대상
 - [ ] `axfm.json` 의 description·provides·accepts 가 실제 코드와 일치

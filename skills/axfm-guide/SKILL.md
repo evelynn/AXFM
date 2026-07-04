@@ -18,7 +18,7 @@ description: >-
   ```
   (파이썬 솔루션은 `.\start.ps1` 첫 실행 시 `register_self()`로도 자동 등록됨 — 둘 다 같은 규칙.)
 - `.axfm/progress.json` 읽기 (없으면 `{"milestones":{"created":true}}` 생성).
-- 실행 여부/환경: 종류에 맞게 `node`/`python` 버전, (웹앱) npm 설치 접근성 점검.
+- 실행 여부/환경: 결정적 스크립트로 점검 — `node "${CLAUDE_PLUGIN_ROOT}/scripts/check-env.mjs"` (웹앱이면 `--web` 추가). 실패 항목의 안내를 그대로 전달한다.
 - **모듈 버전 드리프트**: 프로젝트의 `lib/axfm/`(또는 `axfm/`) 파일 헤더 `AXFM-MODULE ... vX.Y.Z` 와 플러그인 `${CLAUDE_PLUGIN_ROOT}/modules/VERSION` 비교. 다르면 재동기화 제안(아래 6단계).
 
 ## 2단계: 진행도 요약 (형식 고정)

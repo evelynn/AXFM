@@ -15,7 +15,8 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 const PLUGIN_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const WORK = join(PLUGIN_ROOT, ".test-interop");
+// 한글+공백 경로 하위에서 실행 — 대상 사용자의 기본 환경(한글 사용자명·문서 폴더)을 게이트가 대표하도록
+const WORK = join(PLUGIN_ROOT, ".test-interop", "한글 경로 검증");
 const HOME = join(WORK, "home");
 
 function run(cmd, cmdArgs, opts = {}) {
