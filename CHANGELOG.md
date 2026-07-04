@@ -2,6 +2,17 @@
 
 모든 사용자용 변경 이력. 버전 규칙: 플러그인(plugin.json) SemVer, 공통 모듈(modules/VERSION)은 별도 표기.
 
+## v0.4.0 — 2026-07-05
+
+정식 서비스 준비 2차 보완 — 검증·재현성·유출 방지 완성. (공통 모듈 v2.1.0 유지)
+
+- **자동 게이트 5 → 8종**: 스킬 린트(지시문-스크립트 정합), 스크립트 게이트(register/sync 행동 + 버전 3축 일관성), 문서 게이트. E2E 는 한글+공백 경로에서 실행
+- **release-check.mjs**: 릴리스 게이트 원커맨드 — scaffold→npm ci→tsc→build→화면 스모크
+- **Next.js lockfile 동봉**: 의존성 57개 고정 — 누가 언제 설치해도 같은 결과
+- **publish-check.mjs**: 공유 전 유출 자동 점검(.axfm/.env/비밀 패턴) — /axfm-publish 0단계 필수화
+- **check-env.mjs**: 환경 일괄 판정(Claude CLI/Python/Node/npm/마켓플레이스/OneDrive) — guide·debug 연결
+- 릴리스 절차 문서(docs/release-process.md), 파일럿 정량 GA 게이트, 작업 폴더 위치 규칙
+
 ## v0.3.0 — 2026-07-04
 
 정식 서비스 준비 1차 보완. (공통 모듈 v2.1.0)
