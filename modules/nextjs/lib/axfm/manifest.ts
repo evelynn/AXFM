@@ -1,4 +1,4 @@
-// AXFM-MODULE nextjs v2.0.1 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+// AXFM-MODULE nextjs v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { AXFM_PROTOCOL, type Manifest } from "./types";

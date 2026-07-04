@@ -1,4 +1,4 @@
-# AXFM-MODULE python v2.0.1 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+# AXFM-MODULE python v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 # 공통 함수 라이브러리 + 연동 함수 문서 로더. 서버 없음 — 비실시간 스냅샷/문서 기반.
 # 명세: 플러그인 docs/protocol.md v2
 """AXFM 파이썬 연동 라이브러리.
@@ -11,7 +11,7 @@
     for n in axfm.neighbors():
         print(n["name"])
 """
-from .types import AXFM_PROTOCOL, make_envelope, validate_envelope, sanitize_name, parse_ts, STALE_AFTER_MS
+from .types import AXFM_PROTOCOL, make_envelope, validate_envelope, sanitize_name, assert_valid_name, parse_ts, STALE_AFTER_MS
 from .manifest import load_manifest, validate_manifest
 from .registry import (
     registry_path,
@@ -29,6 +29,7 @@ __all__ = [
     "make_envelope",
     "validate_envelope",
     "sanitize_name",
+    "assert_valid_name",
     "parse_ts",
     "STALE_AFTER_MS",
     "load_manifest",

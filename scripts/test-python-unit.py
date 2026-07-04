@@ -46,6 +46,19 @@ check("make_envelope ts 왕복 파싱", types.parse_ts(env["ts"]) is not None)
 check("sanitize_name 경로탈출 차단", types.sanitize_name("../../etc/passwd") == "etcpasswd")
 check("sanitize_name 빈값 폴백", types.sanitize_name("###") == "unknown")
 
+# 데이터 이름 규칙 — 무음 축약 대신 행동형 거부 (protocol §3)
+check("assert_valid_name 정상", types.assert_valid_name("daily-report") == "daily-report")
+try:
+    types.assert_valid_name("주간보고")
+    check("assert_valid_name 한글 거부", False)
+except RuntimeError:
+    check("assert_valid_name 한글 거부", True)
+try:
+    types.assert_valid_name("Bad_Name")
+    check("assert_valid_name 형식 거부", False)
+except RuntimeError:
+    check("assert_valid_name 형식 거부", True)
+
 # manifest 검증
 good = {"axfm": "2", "id": "sol-a", "name": "A", "description": "d", "type": "python", "owner": "o", "provides": [], "accepts": []}
 check("validate_manifest 정상", manifest.validate_manifest(good) is None)

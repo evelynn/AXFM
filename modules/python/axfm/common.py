@@ -1,4 +1,4 @@
-# AXFM-MODULE python v2.0.1 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+# AXFM-MODULE python v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 # 공통 유틸 함수 — 모든 AXFM 솔루션이 같은 함수를 공유해 연동 코드의 형태를 통일한다.
 from __future__ import annotations
 from datetime import datetime, timezone

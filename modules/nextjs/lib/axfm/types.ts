@@ -1,4 +1,4 @@
-// AXFM-MODULE nextjs v2.0.1 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+// AXFM-MODULE nextjs v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 // 연동 규약 명세: 플러그인 docs/protocol.md (v2 — 문서·함수 중심, 비실시간)
 
 /** 규약 major 버전 — 봉투/manifest/interface의 axfm 필드와 비교 */
@@ -69,6 +69,15 @@ export function validateEnvelope(body: unknown): string | null {
 /** 파일명 안전화 — 경로 탈출 방지 */
 export function sanitizeName(s: string): string {
   return s.replace(/[^a-zA-Z0-9-]/g, "").slice(0, 64) || "unknown";
+}
+
+const NAME_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/** 데이터 이름 규칙 검사 — 무음 축약 대신 행동형 거부 (한글 이름이 전부 unknown.json 으로 수렴하는 사고 방지) */
+export function assertValidName(name: string): string {
+  if (!NAME_RE.test(name) || name.length > 64)
+    throw new Error(`데이터 이름은 영문 소문자·숫자·하이픈만 가능합니다 (예: daily-report). 받은 값: '${name}'`);
+  return name;
 }
 
 /** 스냅샷 신선도(ms). 초과 시 "오래된 데이터" 표식 권장 */

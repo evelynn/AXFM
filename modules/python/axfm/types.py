@@ -1,4 +1,4 @@
-# AXFM-MODULE python v2.0.1 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+# AXFM-MODULE python v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 from __future__ import annotations
 import re
 from datetime import datetime, timezone
@@ -42,6 +42,18 @@ def sanitize_name(s: str) -> str:
     """파일명 안전화 — 경로 탈출 방지."""
     cleaned = re.sub(r"[^a-zA-Z0-9-]", "", s)[:64]
     return cleaned or "unknown"
+
+
+_NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+
+
+def assert_valid_name(name: str) -> str:
+    """데이터 이름 규칙 검사 — 무음 축약 대신 행동형 거부."""
+    if not _NAME_RE.match(name) or len(name) > 64:
+        raise RuntimeError(
+            f"데이터 이름은 영문 소문자·숫자·하이픈만 가능합니다 (예: daily-report). 받은 값: {name!r}"
+        )
+    return name
 
 
 def parse_ts(ts: str) -> datetime:

@@ -6,11 +6,12 @@
 |---|---|---|
 | `npm install` 이 403/멈춤 | 사내망에서 npm 레지스트리 차단 | 관리자에게 사내 레지스트리 주소를 받아 프로젝트 `.npmrc`에 `registry=<주소>` 설정. 또는 우선 Python 스크립트 솔루션으로 시작 |
 | `/axfm-new` 등 명령이 안 뜸 | ① 플러그인 미설치 ② **활성화된 폴더 밖에서 실행**(폴더 스코프) | 작업 폴더에서 `claude plugin install axfm@hansol-axfm --scope project` 후 그 폴더에서 `claude` 재실행. 솔루션 폴더라면 `.claude/settings.json` 존재 확인 |
-| `.ps1 실행이 차단됨` | PowerShell 실행 정책 | `.\start.cmd` 사용, 또는 `powershell -ExecutionPolicy Bypass -File .\start.ps1` |
+| 명령에서 `'&&' 토큰이 올바르지 않습니다` 오류 | Windows 기본 PowerShell 5.1은 `&&` 미지원 | 명령을 **한 줄씩** 따로 입력 (예: `npm install` 입력 후 `npm run dev`) |
+| `.ps1 실행이 차단됨` | PowerShell 실행 정책 | `.\start.cmd` 사용 (권장). 정책 우회는 관리자 확인 후에만 |
 | `.ps1 에서 "Unexpected token '??'" 오류` | 구버전 템플릿(모듈 v2.0.0)의 PS7 전용 문법 — 기본 PowerShell 5.1과 비호환 | `/axfm-guide` 로 모듈·스크립트 재동기화 (v2.0.1에서 수정됨). 당장은 `.\start.cmd` 사용 |
 | `Python`/`node` 를 찾을 수 없음 | 미설치 또는 PATH 누락 | Python: python.org 설치(“Add to PATH” 체크). Node: `winget install OpenJS.NodeJS.LTS`. 설치 후 터미널 재시작 |
 | 화면에 한글이 깨짐(스크립트) | 콘솔 인코딩(cp949) | 템플릿 main.py는 UTF-8로 자동 설정됨. 직접 만든 스크립트면 맨 앞에 `sys.stdout.reconfigure(encoding="utf-8")` 추가 |
-| 포트가 이미 사용 중 | 다른 프로그램이 포트 점유 | `/axfm-new`는 빈 포트를 자동 선택. 기존 솔루션이면 `axfm.json`(웹앱 dev 포트)·package.json 확인 |
+| 포트가 이미 사용 중 | 다른 프로그램이 포트 점유 | `/axfm-new`는 등록된 솔루션들의 포트를 피해 배정(다른 프로그램 점유까지는 확인 못 함). 실행 로그에 표시된 **실제 주소**를 여세요 |
 | 이웃 솔루션이 안 보임 | 상대가 레지스트리에 미등록 | 상대 폴더에서 한 번 실행(스크립트는 자동 등록) 또는 `/axfm-guide` 실행 |
 | "레지스트리 손상" 경고 | `~/.axfm/registry.json` 파손 | `/axfm-guide` 가 복구 안내. 최악의 경우 파일을 지우고 각 솔루션에서 `/axfm-guide` 재실행 |
 | 연동 데이터가 안 옴 | 상대가 아직 안 내보냄 / 오래된 스냅샷 | 상대가 해당 데이터를 `writeShared` 했는지, `.axfm/data/<name>.json` 존재하는지 확인 |

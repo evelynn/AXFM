@@ -11,9 +11,8 @@ functions:
     desc: 오늘의 작업 요약 (데모 — 첫 기능을 만들면 교체하세요)
 accepts:
   - name: task
-    writes: ".axfm/data/task.json"
     sample: "{ title: '메뉴 집계', due: '2026-07-03' }"
-    desc: 다른 솔루션이 맡긴 작업
+    desc: 다른 솔루션이 맡긴 작업 (맡긴 쪽 폴더에서 수집)
 ---
 
 # __AXFM_NAME__ 연동 안내
@@ -25,7 +24,8 @@ accepts:
   파이썬: `axfm.read_from("__AXFM_ID__", "daily-report")`
 
 ## 받는 것 (accepts)
-- **task**: 나에게 작업을 맡기려면 상대가 스냅샷으로 내보내고, 나는 `axfm.read_shared("task")`로 읽습니다.
+- **task**: 나에게 작업을 맡기려면 상대가 자기 솔루션에서 `axfm.write_shared("task", {...})`로 내보내고,
+  나는 `axfm.read_from("<상대id>", "task")`로 수집합니다.
 
 ## 규칙
 - 데이터/함수를 바꾸면 이 문서를 함께 갱신합니다 (/axfm-feature 가 자동으로 지킵니다).

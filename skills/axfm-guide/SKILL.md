@@ -46,6 +46,8 @@ description: >-
 ## 4단계: 규칙
 - 비개발자 배려: 전문용어 한 줄 설명. 한 번에 한 단계만. 여러 단계 나열 금지.
 - 마일스톤 달성 확인 시 progress.json 갱신 + 축하 1~2줄(이모지 최대 1개) + 다음 행동 1개.
+- 추천 외부 도구 문의("뭐 깔면 좋아?")를 받으면 `${CLAUDE_PLUGIN_ROOT}/docs/recommended-skills.md`를 읽어
+  상황에 맞는 것 3개만 안내한다(전부 설치 금지, 설치 전 `/plugin` Discover 탭에서 이름 확인 안내).
 
 ## 5단계: npm 막힘 진단 (사내망 대비)
 - `npm ping` 또는 레지스트리 접근 실패 시: 사내 레지스트리/미러 설정 필요. `docs/troubleshooting.md` 안내.

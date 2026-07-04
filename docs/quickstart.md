@@ -23,12 +23,18 @@ claude plugin install axfm@hansol-axfm --scope project
 ```
 /axfm-new
 ```
-질문 3개(종류/설명/이름)에 답하면 뼈대가 자동 생성됩니다.
+질문 3개(종류/설명/이름)와 영문 약칭 확인 1번에 답하면 뼈대가 자동 생성됩니다.
 
 ## 3. 실행해서 눈으로 확인
-- **웹앱**: `cd <폴더> && npm install && npm run dev` → 브라우저에서 http://localhost:3001
+- **웹앱** (한 줄씩 입력):
+  ```
+  cd <폴더>
+  npm install
+  npm run dev
+  ```
+  → 브라우저에서 생성 결과에 표시된 주소(예: http://localhost:3001)를 여세요.
   > 이 화면이 보여야 정상: 내 솔루션 이름, "내가 주고받는 것", "이웃 솔루션", "공통 통로 체험" 카드.
-- **스크립트**: `cd <폴더> && .\start.ps1` (막히면 `.\start.cmd`)
+- **스크립트**: `cd <폴더>` 입력 후 `.\start.ps1` (막히면 `.\start.cmd`)
   > 이 출력이 보여야 정상: "레지스트리에 등록됨", "daily-report 스냅샷 저장".
 
 ## 4. 다음 할 일 안내받기

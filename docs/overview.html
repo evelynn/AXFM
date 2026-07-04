@@ -87,8 +87,8 @@ claude plugin install axfm@hansol-axfm --scope project</code></pre>
   <div class="card">
     <h2>2. 첫 솔루션까지 10분 — 전체 흐름</h2>
     <ol class="steps">
-      <li><div><strong>만들기</strong> — <span class="mono">/axfm-new</span> 입력, 질문 3개(종류/설명/이름)에 답하면 뼈대가 자동 생성됩니다. 레지스트리 등록·디자인 적용까지 자동.</div></li>
-      <li><div><strong>실행해서 눈으로 확인</strong> — 웹앱: <span class="mono">npm install && npm run dev</span> → 브라우저 확인 / 스크립트: <span class="mono">.\start.ps1</span> (막히면 <span class="mono">.\start.cmd</span>)</div></li>
+      <li><div><strong>만들기</strong> — <span class="mono">/axfm-new</span> 입력, 질문 3개(종류/설명/이름)와 영문 약칭 확인 1번이면 뼈대가 자동 생성됩니다. 레지스트리 등록·디자인 적용까지 자동.</div></li>
+      <li><div><strong>실행해서 눈으로 확인</strong> — 웹앱: <span class="mono">npm install</span> 그다음 <span class="mono">npm run dev</span> → 브라우저 확인 / 스크립트: <span class="mono">.\start.ps1</span> (막히면 <span class="mono">.\start.cmd</span>)</div></li>
       <li><div><strong>다음 할 일 안내</strong> — 솔루션 폴더에서 <span class="mono">claude</span> 실행 → <span class="mono">/axfm-guide</span>. 지금 어디까지 왔고 다음에 뭘 할지 딱 하나만 알려줍니다.</div></li>
       <li><div><strong>기능 추가</strong> — <span class="mono">/axfm-feature</span> 에 원하는 것을 말로 설명하면 작게 만들고 눈으로 확인시켜 줍니다.</div></li>
       <li><div><strong>연동·공유</strong> — <span class="mono">/axfm-connect</span> 로 다른 솔루션과 데이터 연결, <span class="mono">/axfm-publish</span> 로 팀에 공유.</div></li>
@@ -97,7 +97,7 @@ claude plugin install axfm@hansol-axfm --scope project</code></pre>
 
   <!-- ─────────────────── 스킬 목록 ─────────────────── -->
   <div class="card">
-    <h2>3. 스킬 9종 — 무엇을 해주나</h2>
+    <h2>3. 스킬 8종 — 무엇을 해주나</h2>
     <div class="table-wrap">
     <table>
       <tr><th>명령</th><th>언제 쓰나</th><th>하는 일</th></tr>
@@ -109,7 +109,6 @@ claude plugin install axfm@hansol-axfm --scope project</code></pre>
       <tr><td class="mono">/axfm-debug</td><td>"안 돼", "에러 나"</td><td>흔한 원인(환경/실행 위치/연동/버전)부터 순서대로, 한 번에 하나씩 진단하고 고침</td></tr>
       <tr><td class="mono">/axfm-qa</td><td>공유 전 "잘 되나 봐줘"</td><td>내 솔루션 맞춤 체크리스트 생성 → 항목별로 실제 동작·디자인·문서 일치를 점검하고 표로 보고</td></tr>
       <tr><td class="mono">/axfm-publish</td><td>팀원도 쓰게 하고 싶을 때</td><td>비밀값·데이터 유출 점검 → git 준비 → 메신저에 붙일 팀원용 안내문 자동 생성</td></tr>
-      <tr><td class="mono">/axfm-toolbox</td><td>"뭐 깔면 좋아?"</td><td>검증된 외부 스킬/플러그인 중 내 상황에 맞는 3~5개만 골라 설치법과 함께 추천</td></tr>
     </table>
     </div>
   </div>
@@ -158,7 +157,7 @@ claude plugin install axfm@hansol-axfm --scope project</code></pre>
     <ol class="steps">
       <li><div><span class="mono">git clone &lt;주소&gt;</span> → <span class="mono">cd &lt;폴더&gt;</span></div></li>
       <li><div>(최초 1회) <span class="mono">claude plugin marketplace add evelynn/AXFM</span> → <span class="mono">claude plugin install axfm@hansol-axfm --scope project</span></div></li>
-      <li><div>실행 — 웹앱 <span class="mono">npm install && npm run dev</span> / 스크립트 <span class="mono">.\start.ps1</span></div></li>
+      <li><div>실행 — 웹앱 <span class="mono">npm install</span> 그다음 <span class="mono">npm run dev</span> / 스크립트 <span class="mono">.\start.ps1</span></div></li>
       <li><div>같은 폴더에서 <span class="mono">claude</span> → <span class="mono">/axfm-guide</span> — 자동으로 등록되고 연동 준비 완료</div></li>
     </ol>
     <p class="muted">솔루션 폴더에는 폴더 스코프 활성화 설정이 이미 들어 있어, Claude Code 가 설치를 스스로 안내합니다.</p>

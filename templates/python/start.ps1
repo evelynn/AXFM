@@ -1,5 +1,5 @@
 # __AXFM_NAME__ 실행 스크립트 (PowerShell — 5.1 호환 문법만 사용)
-# 실행이 막히면: powershell -ExecutionPolicy Bypass -File .\start.ps1
+# 실행이 막히면 .\start.cmd 를 사용하세요.
 $ErrorActionPreference = "Stop"
 Set-Location -Path $PSScriptRoot
 

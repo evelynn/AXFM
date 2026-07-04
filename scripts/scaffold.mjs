@@ -152,7 +152,7 @@ if (existsSync(claudeTpl)) {
   const moduleVersion = existsSync(join(PLUGIN_ROOT, "modules", "VERSION"))
     ? readFileSync(join(PLUGIN_ROOT, "modules", "VERSION"), "utf8").trim()
     : "unknown";
-  const runCmd = type === "nextjs" ? `npm install && npm run dev  (http://localhost:${port})` : ".\\start.ps1  (막히면 .\\start.cmd)";
+  const runCmd = type === "nextjs" ? `npm install 그다음 npm run dev  (http://localhost:${port})` : ".\\start.ps1  (막히면 .\\start.cmd)";
   let claude = readFileSync(claudeTpl, "utf8")
     .split("__AXFM_NAME__").join(name)
     .split("__AXFM_TYPE__").join(type)

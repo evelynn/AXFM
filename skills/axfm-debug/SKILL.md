@@ -17,7 +17,7 @@ description: >-
 1. **환경**: Node/Python 설치? 버전? (웹앱 `node -v`, 스크립트 `python --version`)
 2. **npm 막힘**(사내망): `npm install` 실패 → `docs/troubleshooting.md` + 사내 레지스트리 안내.
 3. **실행 위치**: 프로젝트 폴더(axfm.json 있는 곳)에서 실행 중인가?
-4. **PowerShell 실행정책**: `.ps1` 이 막히면 `.\start.cmd` 또는 `powershell -ExecutionPolicy Bypass -File .\start.ps1`.
+4. **PowerShell 실행정책**: `.ps1` 이 막히면 `.\start.cmd` 사용 (정책 우회는 최후 수단 — 관리자 확인 후).
 5. **연동 문제**: 상대가 데이터를 내보냈나(`.axfm/data/<name>.json` 존재)? 레지스트리 경로 정확? 규약 버전 일치?
 6. **모듈/스킬 버전**: `/axfm-guide` 로 드리프트 확인.
 

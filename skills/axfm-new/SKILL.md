@@ -3,7 +3,7 @@ name: axfm-new
 description: >-
   새 AXFM 솔루션(업무 도구) 뼈대를 만든다. 사용자가 "새 솔루션", "새 프로젝트 만들어",
   "도구 만들고 싶어", "axfm new" 라고 하거나 /axfm-new 를 입력하면 사용.
-  질문 3개만 받고 결정적 스크립트로 생성한다 (직접 파일을 복사·치환하지 말 것).
+  질문 3개 + 확인 1번만 받고 결정적 스크립트로 생성한다 (직접 파일을 복사·치환하지 말 것).
 ---
 
 # AXFM 새 솔루션 만들기
@@ -32,10 +32,10 @@ node "${CLAUDE_PLUGIN_ROOT}/scripts/scaffold.mjs" --type <nextjs|python> --id <i
 - 스크립트가 병합 복사·치환·(웹앱)디자인 토큰 내보내기·레지스트리 등록·사후검증까지 수행한다.
 - 출력 JSON의 `ok: true`와 `port`(웹앱)를 확인한다. 실패하면 오류 메시지를 그대로 사용자에게 보여주고 원인(대상 폴더 비어있지 않음 / id 충돌 등)을 설명한다.
 
-## 4단계: 첫 실행 안내 (딱 이 두 가지만)
-- 웹앱: `cd <대상> && npm install && npm run dev` → 브라우저 http://localhost:<port>
+## 4단계: 첫 실행 안내 (딱 이 두 가지만 — 명령은 한 줄씩, `&&` 금지: 기본 PowerShell 5.1 비호환)
+- 웹앱: `cd <대상>` → `npm install` → `npm run dev` → "브라우저에서 http://localhost:<port> 를 여세요" (port 는 scaffold 출력값)
   - npm 설치가 사내망에서 막히면 `/axfm-guide`가 진단하도록 안내.
-- 스크립트: `cd <대상> && .\start.ps1` (막히면 `.\start.cmd`)
+- 스크립트: `cd <대상>` → `.\start.ps1` (막히면 `.\start.cmd`)
 
 ## 5단계: 진행도 + 추천 스킬
 - 대상 폴더에 `.axfm/progress.json`이 없으면 `{"milestones":{"created":true}}`로 만든다.

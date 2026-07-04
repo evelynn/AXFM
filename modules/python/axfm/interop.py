@@ -1,4 +1,4 @@
-# AXFM-MODULE python v2.0.1 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+# AXFM-MODULE python v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 # 공통 함수 라이브러리 + 연동 함수 문서 로더. 서버 없음 — 비실시간. 명세: docs/protocol.md v2
 from __future__ import annotations
 import json
@@ -7,7 +7,7 @@ import time
 from typing import Any, Optional
 from .manifest import load_manifest
 from .registry import get_entry, list_neighbors
-from .types import make_envelope, validate_envelope, sanitize_name, parse_ts, STALE_AFTER_MS
+from .types import make_envelope, validate_envelope, sanitize_name, assert_valid_name, parse_ts, STALE_AFTER_MS
 
 
 def _data_dir(root: str) -> str:
@@ -16,6 +16,7 @@ def _data_dir(root: str) -> str:
 
 def write_shared(name: str, data: Any, root: Optional[str] = None) -> str:
     """내 데이터를 .axfm/data/{name}.json 에 표준 봉투로 원자적 저장 (temp+rename)."""
+    assert_valid_name(name)
     root = root or os.getcwd()
     sender = load_manifest(root)["id"]
     d = _data_dir(root)
@@ -39,11 +40,17 @@ def read_from(solution_id: str, name: str) -> dict:
 
     반환된 봉투에 'stale'(bool) 키를 추가한다.
     """
+    assert_valid_name(name)
     entry = get_entry(solution_id)
     if entry is None:
         raise RuntimeError(
             f"'{solution_id}' 솔루션이 레지스트리에 없습니다. "
             "상대 프로젝트에서 /axfm-guide 를 한 번 실행하면 등록됩니다."
+        )
+    if not os.path.isdir(entry["path"]):
+        raise RuntimeError(
+            f"'{entry['name']}'({solution_id})의 폴더가 없습니다 ({entry['path']} — 이동/삭제된 듯). "
+            "/axfm-guide 로 레지스트리를 정리하세요."
         )
     env = _read_envelope(os.path.join(entry["path"], ".axfm", "data", f"{sanitize_name(name)}.json"))
     if env is None:
@@ -55,6 +62,10 @@ def read_from(solution_id: str, name: str) -> dict:
         raise RuntimeError(
             f"경로 불일치: '{name}' 스냅샷의 발신자가 '{env.get('from')}'입니다(기대: {solution_id}). "
             "레지스트리가 오염됐을 수 있습니다 — /axfm-guide 로 확인하세요."
+        )
+    if env.get("name") != name:
+        raise RuntimeError(
+            f"이름 불일치: 스냅샷의 이름이 '{env.get('name')}'입니다(기대: {name}). 파일이 잘못 복사됐을 수 있습니다."
         )
     age_ms = (time.time() - parse_ts(env["ts"]).timestamp()) * 1000
     env["stale"] = age_ms > STALE_AFTER_MS
@@ -71,7 +82,10 @@ def load_interface(solution_id: str) -> Optional[dict]:
     entry = get_entry(solution_id)
     if entry is None:
         return None
-    path = os.path.join(entry["path"], entry.get("interface") or os.path.join("axfm", "interface.md"))
+    root = os.path.abspath(entry["path"])
+    path = os.path.abspath(os.path.join(root, entry.get("interface") or os.path.join("axfm", "interface.md")))
+    if not path.startswith(root + os.sep):  # 레지스트리 오염 방어 — 루트 밖 경로 무시
+        return None
     try:
         with open(path, "r", encoding="utf-8-sig") as f:
             raw = f.read()

@@ -23,7 +23,7 @@
 
 ### 과제 2. 환경 구성과 스킬 세팅이 어렵다
 - **커버**: 설치 2줄(폴더 스코프 — 해당 폴더에만 적용, 전역 오염 없음), `/axfm-new`가 환경 점검(Node/Python)
-  포함 결정적 생성, `/axfm-toolbox` 추천 스킬 큐레이션, troubleshooting 증상표, npm 막힘 진단.
+  포함 결정적 생성, 추천 도구 큐레이션(guide 가 recommended-skills.md 참조 — v0.3에서 toolbox 스킬 흡수), troubleshooting 증상표, npm 막힘 진단.
 - **남은 것**: 관리자 1회 세팅(마켓플레이스 등록, Node/Python 설치)의 자동화·체크 스크립트는 없음
   (현재는 pilot-onboarding.md 의 수동 체크리스트).
 
