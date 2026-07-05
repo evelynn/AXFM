@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXFM 연구·분석 보고서 — v0.2.0 → v0.5.0</title>
+<style>
+  /* AXFM 표준 디자인 v1.0 토큰 */
+  :root {
+    --primary: #1B4D8B; --secondary: #5A6472; --tertiary: #E8590C;
+    --neutral: #F6F7F9; --surface: #FFFFFF; --text: #1A1C1E; --muted: #6C7278;
+    --success: #2F9E44; --danger: #C92A2A; --border: #E2E5E9;
+    --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-full: 9999px;
+    --sp-xs: 4px; --sp-sm: 8px; --sp-md: 16px; --sp-lg: 24px; --sp-xl: 40px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--neutral); color: var(--text);
+    font-family: Pretendard, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif; font-size: 16px; line-height: 1.6; }
+  .container { max-width: 960px; margin: 0 auto; padding: var(--sp-xl) var(--sp-lg); display: flex; flex-direction: column; gap: var(--sp-md); }
+  h1 { font-size: 32px; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin: 0; }
+  h2 { font-size: 24px; font-weight: 600; line-height: 1.3; margin: 0 0 var(--sp-sm); }
+  h3 { font-size: 17px; font-weight: 600; margin: var(--sp-md) 0 var(--sp-xs); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-lg); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .muted { color: var(--muted); font-size: 14px; }
+  .mono { font-family: D2Coding, Consolas, monospace; font-size: 14px; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: var(--r-full); font-size: 14px; color: var(--surface); vertical-align: middle; }
+  .badge.blue { background: var(--primary); } .badge.green { background: var(--success); } .badge.orange { background: var(--tertiary); }
+  .row { display: flex; align-items: center; gap: var(--sp-sm); flex-wrap: wrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { text-align: left; font-weight: 600; padding: 9px 12px; border-bottom: 2px solid var(--border); white-space: nowrap; }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .table-wrap { overflow-x: auto; }
+  .callout { border-left: 4px solid var(--primary); background: var(--neutral); border-radius: var(--r-sm); padding: var(--sp-md); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-md); }
+  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+  /* 순수 CSS 막대 차트 */
+  .bar-row { display: grid; grid-template-columns: 120px 1fr 56px; align-items: center; gap: var(--sp-sm); margin: 6px 0; }
+  .bar-track { background: var(--neutral); border: 1px solid var(--border); border-radius: var(--r-full); height: 18px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--primary); border-radius: var(--r-full); }
+  .bar-fill.good { background: var(--success); } .bar-fill.warn { background: var(--tertiary); }
+  .bar-val { text-align: right; font-weight: 600; font-size: 14px; }
+  .kpi { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: var(--sp-md); }
+  .kpi > div { background: var(--neutral); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-md); text-align: center; }
+  .kpi b { display: block; font-size: 26px; color: var(--primary); }
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li { display: flex; gap: var(--sp-md); padding: 6px 0; border-bottom: 1px dashed var(--border); }
+  .timeline li:last-child { border-bottom: none; }
+  .timeline .d { flex: 0 0 92px; font-weight: 600; color: var(--primary); white-space: nowrap; }
+  footer { color: var(--muted); font-size: 14px; text-align: center; padding: var(--sp-md) 0 var(--sp-xl); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="row">
+    <h1>AXFM 연구·분석 보고서</h1>
+    <span class="badge blue">v0.2.0 → v0.5.0</span>
+    <span class="badge green">2026-07-03 ~ 07-05</span>
+  </div>
+  <p class="muted">방법: 6개 관점 독립 연구원 검토(발견 48건) → 순차 업그레이드(릴리스 4회) → 48건 항목별 재추적 점수화 →
+  토큰 효율 실측 연구. 근거 문서: docs/reviews/(검토·점수표) · docs/design/token-efficiency.md · CHANGELOG.md</p>
+
+  <!-- 핵심 요약 -->
+  <div class="card">
+    <h2>핵심 요약</h2>
+    <div class="kpi">
+      <div><b>50점</b>발견 48건 가중 해소율<br><span class="muted">(blocker 기준 63점)</span></div>
+      <div><b>0건</b>코드로 해소 가능한<br>잔여 blocker</div>
+      <div><b>5 → 9</b>자동·릴리스 게이트<br><span class="muted">(test-all 8종 + release-check)</span></div>
+      <div><b>~1,132tok</b>세션당 상시 토큰 비용<br><span class="muted">(목표 1,500 미만 관리)</span></div>
+    </div>
+    <p style="margin-bottom:0">v0.2.0은 <strong>"잘 만들어진 프로토타입 + 미검증 약속"</strong>이었다.
+    v0.5.0은 <strong>"약속한 것은 게이트가 지키는 상태"</strong>다. 파일럿 착수를 막는 기술 항목은 0건이며,
+    남은 blocker 3건은 전부 <strong>오너 결정 대기</strong>(운영 담당자·지원 채널, 현황판 승인, 파일럿 표본)다.</p>
+  </div>
+
+  <!-- 타임라인 -->
+  <div class="card">
+    <h2>1. 연구·업그레이드 경과</h2>
+    <ul class="timeline">
+      <li><span class="d">7/3</span><span>재검토로 결함 발견(PS5.1 비호환·데모 미컴파일·크로스 스택 파손) → <strong>v0.2.0</strong>: 설치 가능 구조 완성, 폴더 스코프 확정, GitHub 공개(evelynn/AXFM)</span></li>
+      <li><span class="d">7/3</span><span><strong>6개 관점 독립 연구원 검토</strong>(UX·아키텍처·보안·운영·제품·품질) — 발견 48건(blocker 15·major 24·minor 9), 정식 서비스 전환 계획 수립</span></li>
+      <li><span class="d">7/4</span><span><strong>v0.3.0</strong>: Phase 0 전 항목 — 보내기 모델 확정("보내기도 받아가기"), 스킬 9→8종, 이름 규칙 엄격화, 레지스트리 견고화, 문서 게이트</span></li>
+      <li><span class="d">7/5</span><span><strong>v0.4.0</strong>: 게이트 8종(스킬 린트·스크립트 게이트), publish-check(유출 자동 점검)·check-env, lockfile(의존성 57개 고정)+release-check, 릴리스 절차·정량 파일럿 게이트</span></li>
+      <li><span class="d">7/5</span><span><strong>v0.5.0</strong>: 현황판 공통 함수 overview(), 비-CLI 사용자 배려, 설계 4원칙 "알뜰(토큰 절약)" + 효율 연구</span></li>
+    </ul>
+    <p class="muted">버전업은 매회 실제 사용자 경로(marketplace update → plugin update)로 배포 실증: 0.2.0→0.3.0→0.4.0→0.5.0</p>
+  </div>
+
+  <!-- 점수 분석 -->
+  <div class="card">
+    <h2>2. 업그레이드 전후 점수 분석 (발견 48건 재추적)</h2>
+    <p class="muted">산식: blocker=5 · major=2 · minor=1 가중, 부분 해소=0.5 — 관점 점수 = 해소 가중치 ÷ 전체 가중치 × 100</p>
+    <div class="bar-row"><span>품질·테스트</span><div class="bar-track"><div class="bar-fill good" style="width:64%"></div></div><span class="bar-val">64점</span></div>
+    <div class="bar-row"><span>보안·거버넌스</span><div class="bar-track"><div class="bar-fill good" style="width:61%"></div></div><span class="bar-val">61점</span></div>
+    <div class="bar-row"><span>비개발자 UX</span><div class="bar-track"><div class="bar-fill good" style="width:58%"></div></div><span class="bar-val">58점</span></div>
+    <div class="bar-row"><span>아키텍처</span><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div><span class="bar-val">44점</span></div>
+    <div class="bar-row"><span>제품·서비스화</span><div class="bar-track"><div class="bar-fill" style="width:41%"></div></div><span class="bar-val">41점</span></div>
+    <div class="bar-row"><span>플랫폼 운영</span><div class="bar-track"><div class="bar-fill warn" style="width:38%"></div></div><span class="bar-val">38점</span></div>
+    <div class="bar-row"><span><strong>전체</strong></span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="bar-val"><strong>50점</strong></span></div>
+    <div class="bar-row"><span><strong>blocker 만</strong></span><div class="bar-track"><div class="bar-fill good" style="width:63%"></div></div><span class="bar-val"><strong>63점</strong></span></div>
+
+    <h3>판독</h3>
+    <ul style="margin:0">
+      <li><strong>품질·보안·UX 상승</strong>은 이틀의 투자가 게이트·유출 방지·명령 호환에 집중된 결과 — 사용자가 첫 10분에 만나는 실패 표면이 구조적으로 줄었다.</li>
+      <li><strong>운영(38점)이 최저</strong> — 남은 것이 CI·계측·담당자 지정 같은 "운영 체계" 항목이라 코드보다 결정이 필요한 영역. 다음 투자처.</li>
+      <li>발견 48건 처리: <strong>해소 16 · 부분 14 · 잔여 18</strong> — 잔여의 대부분은 (a) 오너 결정 (b) 확산 규모(30~50개)에서만 필요한 항목 (c) 사람 실측(파일럿).</li>
+    </ul>
+  </div>
+
+  <!-- 객관 지표 -->
+  <div class="card">
+    <h2>3. 객관 지표 전후 비교</h2>
+    <div class="table-wrap">
+    <table>
+      <tr><th>지표</th><th>v0.2.0 (7/3)</th><th>v0.5.0 (7/5)</th></tr>
+      <tr><td>자동 게이트</td><td>5종</td><td><strong>8종</strong> + release-check(재현 빌드 원커맨드)</td></tr>
+      <tr><td>검증 사각지대</td><td>스킬 계층·register/sync·한글 경로 미검증</td><td>전부 게이트 편입 (스킬 린트가 첫 실행에서 실결함 검출)</td></tr>
+      <tr><td>연동 규약</td><td>보내기 방향 3자 모순 (pushData 잔재)</td><td>"보내기도 받아가기" 단일 모델 — 다중 발신 충돌 없음</td></tr>
+      <tr><td>유출 방지</td><td>LLM 자율 체크리스트</td><td>publish-check 결정적 검사 (비밀 주입 실증 거부)</td></tr>
+      <tr><td>Next.js 재현성</td><td>lockfile 없음</td><td>의존성 57개 고정 + npm ci 검증</td></tr>
+      <tr><td>사용자 명령 호환</td><td>7개 파일 PS5.1 비호환(&amp;&amp;)</td><td>0건 + 문서 게이트로 봉인</td></tr>
+      <tr><td>관리(과제⑤) 데이터</td><td>없음</td><td><strong>overview() 공통 함수</strong> — 현황판·모니터링의 표준 데이터 소스</td></tr>
+      <tr><td>배포 채널</td><td>git 저장소 아님</td><td>GitHub 공개 + 태그 4개 + CHANGELOG + 릴리스·롤백 절차</td></tr>
+      <tr><td>스킬</td><td>9종(중복 포함)</td><td>8종 + 동봉 /solution-help (폴더 스코프 예제)</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <!-- 토큰 연구 -->
+  <div class="card">
+    <h2>4. 토큰 효율 연구 (설계 4원칙 "알뜰"의 근거)</h2>
+    <p>일반 사용자의 요금제는 <strong>Pro가 기본</strong>이라는 전제에서, 스킬의 비용 구조를 측정하고 절약 원칙을 수립했다.</p>
+
+    <h3>비용 구조 — 두 종류</h3>
+    <div class="grid2">
+      <div class="callout"><strong>상시(always-on)</strong> — 활성 폴더의 모든 세션마다 스킬 설명이 컨텍스트에 실림.<br>
+        실측 합계 <strong>~1,132 tok/세션</strong> (9종 1,266 → 8종 정리로 -134). 관리 목표 <strong>1,500 미만</strong>, 릴리스마다 재측정.</div>
+      <div class="callout"><strong>호출 시(on-invoke)</strong> — 발동한 스킬의 본문 + 스킬이 읽는 파일들.<br>
+        핵심 통찰: 진짜 비용은 본문이 아니라 <strong>"LLM이 하는 일"</strong> — 절약의 중심은 문장 압축이 아니라 구조다.</div>
+    </div>
+
+    <h3>스킬별 호출 시 비용 (실측, plugin details)</h3>
+    <div class="bar-row"><span class="mono">guide</span><div class="bar-track"><div class="bar-fill warn" style="width:100%"></div></div><span class="bar-val">1.9k</span></div>
+    <div class="bar-row"><span class="mono">connect</span><div class="bar-track"><div class="bar-fill" style="width:79%"></div></div><span class="bar-val">1.5k</span></div>
+    <div class="bar-row"><span class="mono">new</span><div class="bar-track"><div class="bar-fill" style="width:68%"></div></div><span class="bar-val">1.3k</span></div>
+    <div class="bar-row"><span class="mono">feature</span><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div><span class="bar-val">1.1k</span></div>
+    <div class="bar-row"><span class="mono">publish</span><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div><span class="bar-val">1.1k</span></div>
+    <div class="bar-row"><span class="mono">debug</span><div class="bar-track"><div class="bar-fill good" style="width:37%"></div></div><span class="bar-val">0.7k</span></div>
+    <div class="bar-row"><span class="mono">qa</span><div class="bar-track"><div class="bar-fill good" style="width:28%"></div></div><span class="bar-val">0.54k</span></div>
+    <div class="bar-row"><span class="mono">idea</span><div class="bar-track"><div class="bar-fill good" style="width:25%"></div></div><span class="bar-val">0.48k</span></div>
+    <p class="muted">guide는 가장 자주 호출되는 진입점이라 본문 증가에 가장 민감 — 새 기능은 본문이 아니라 "스크립트 신설 + 호출 한 줄"로 추가한다는 규칙을 적용.</p>
+
+    <h3>구조적 절약 장치 (적용 완료)</h3>
+    <div class="table-wrap">
+    <table>
+      <tr><th>장치</th><th>절약 원리</th></tr>
+      <tr><td>결정적 스크립트 위임 (7종)</td><td>생성·등록·동기화·점검을 LLM 파일 편집이 아닌 스크립트 1회 호출로 — 도구 호출·재시도·출력 토큰 구조적 절감 (최대 장치)</td></tr>
+      <tr><td>폴더 스코프</td><td>활성 폴더 밖 세션의 상시 비용 0</td></tr>
+      <tr><td>집계는 코드가 — overview()</td><td>전 솔루션 현황 계산을 코드가 수행, LLM은 결과 요약만</td></tr>
+      <tr><td>스킬 8종 정리</td><td>중복(toolbox) 제거 — 상시 -134 tok</td></tr>
+      <tr><td>응답 형태 규칙</td><td>"다음 행동 딱 하나"·"질문 최대 N개"·"3~7줄" — 출력 토큰 상한</td></tr>
+      <tr><td>문서 분리</td><td>SKILL은 절차만, 상세(증상표·추천 목록)는 docs로 — 필요할 때만 로드</td></tr>
+    </table>
+    </div>
+
+    <h3>향후 연구</h3>
+    <ul style="margin:0">
+      <li>파일럿에서 참가자별 세션 토큰·스킬 발동 횟수 실측 — 추정을 실측으로 교체</li>
+      <li>idea(0.48k)+qa(0.54k) 통합 시 상시 -260 tok 추가 여지 — 사용 빈도 데이터로 판단</li>
+      <li>description 압축 A/B, plugin eval 기반 스킬별 소비 비교</li>
+    </ul>
+  </div>
+
+  <!-- 결론 -->
+  <div class="card">
+    <h2>5. 결론과 다음 단계</h2>
+    <ol style="margin:0">
+      <li><strong>기술 준비는 파일럿 기준 완료</strong> — 설치→생성→실행→연동→공유 전 구간이 자동 게이트로 보증되고, 버전업 배포 경로가 4회 실증됨.</li>
+      <li><strong>다음 병목은 결정과 실측</strong>: ① 운영 담당자·지원 채널 지정 ② 파일럿 표본·일정 확정(정량 GA 게이트: 80% 무개입 완주·중위 ≤10분) ③ 현황판 솔루션(overview() 기반) 제작 여부.</li>
+      <li><strong>확산 규모 대비 백로그</strong>(아키텍처·운영 잔여): interface 파서 골든 케이스, sync 백업/롤백, 일괄 동기화, CI, 위협 모델 문서 — 파일럿 병행 진행 가능.</li>
+    </ol>
+  </div>
+
+  <footer>
+    Hansol AXFM 연구·분석 보고서 · 2026-07-05 · 플러그인 v0.5.0 / 공통 모듈 v2.2.0 / 디자인 표준 v1.0<br>
+    상세: docs/reviews/2026-07-03-service-review.md(검토 48건 전문) · 2026-07-05-upgrade-scorecard.md(점수표) · docs/design/token-efficiency.md(토큰 연구)
+  </footer>
+
+</div>
+</body>
+</html>
