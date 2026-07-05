@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 name: AXFM Standard
-description: Hansol AXFM 표준 디자인 시스템 (2026-07-03 오너 확정 — 모든 솔루션의 기준)
+description: Hansol AXFM 표준 디자인 시스템 (2026-07-03 오너 확정, 2026-07-05 보고서 컴포넌트 승격 — 모든 솔루션의 기준)
 colors:
   primary: "#1B4D8B"
   secondary: "#5A6472"
@@ -70,6 +70,30 @@ components:
     backgroundColor: "{colors.text-muted}"
     textColor: "{colors.surface}"
     rounded: "{rounded.full}"
+  kpi-card:
+    backgroundColor: "{colors.neutral}"
+    borderColor: "{colors.border}"
+    valueColor: "{colors.primary}"
+    valueSize: 26px
+    rounded: "{rounded.md}"
+    padding: "{spacing.md}"
+  callout:
+    borderColor: "{colors.primary}"
+    backgroundColor: "{colors.neutral}"
+    rounded: "{rounded.sm}"
+    padding: "{spacing.md}"
+  bar-chart:
+    trackColor: "{colors.neutral}"
+    trackBorder: "{colors.border}"
+    fillColor: "{colors.primary}"
+    fillGood: "{colors.success}"
+    fillWarn: "{colors.tertiary}"
+    height: 18px
+    rounded: "{rounded.full}"
+  table:
+    headBorder: "{colors.border}"
+    rowBorder: "{colors.border}"
+    cellPadding: 9px 12px
 ---
 
 # AXFM Standard Design System
@@ -110,6 +134,16 @@ Hansol AXFM 솔루션들의 **확정 표준** 디자인 시스템입니다 (2026
 - **button-primary**: 화면당 1~2개까지. 나머지 버튼은 테두리형(secondary)으로.
 - **card**: 정보 블록의 기본 단위. border 1px + rounded.lg.
 - **badge-online / badge-offline**: 솔루션 연결 상태 표시 전용.
+
+### 보고서·대시보드 컴포넌트 (v1.1 — 실측 보고서 디자인을 표준으로 승격)
+
+- **kpi-card**: 핵심 숫자 강조 카드 — 큰 값(valueSize, primary 색) + 아래 한 줄 설명.
+  그리드로 나란히 배치(최소 160px). 한 화면에 3~5개가 적정.
+- **callout**: 왼쪽 4px primary 테두리의 강조 박스 — 규칙·주의·핵심 문장 1~3줄 전용.
+- **bar-chart**: 수평 막대 — track(neutral+border) 위에 fill. 기본 fill 은 primary,
+  좋은 값은 fillGood(success), 주의 값은 fillWarn(tertiary). 점수·비율·비교에 사용 (외부 차트 라이브러리 금지).
+- **table**: 머리행은 2px 아래 테두리, 행은 1px, 마지막 행 테두리 없음. 셀 여백은 cellPadding.
+  넓은 표는 가로 스크롤 컨테이너로 감싼다.
 
 ## Do's and Don'ts
 

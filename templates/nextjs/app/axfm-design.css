@@ -56,4 +56,24 @@
   --axfm-components-badge-offline-background-color: #6C7278;
   --axfm-components-badge-offline-text-color: #FFFFFF;
   --axfm-components-badge-offline-rounded: 9999px;
+  --axfm-components-kpi-card-background-color: #F6F7F9;
+  --axfm-components-kpi-card-border-color: #E2E5E9;
+  --axfm-components-kpi-card-value-color: #1B4D8B;
+  --axfm-components-kpi-card-value-size: 26px;
+  --axfm-components-kpi-card-rounded: 10px;
+  --axfm-components-kpi-card-padding: 16px;
+  --axfm-components-callout-border-color: #1B4D8B;
+  --axfm-components-callout-background-color: #F6F7F9;
+  --axfm-components-callout-rounded: 6px;
+  --axfm-components-callout-padding: 16px;
+  --axfm-components-bar-chart-track-color: #F6F7F9;
+  --axfm-components-bar-chart-track-border: #E2E5E9;
+  --axfm-components-bar-chart-fill-color: #1B4D8B;
+  --axfm-components-bar-chart-fill-good: #2F9E44;
+  --axfm-components-bar-chart-fill-warn: #E8590C;
+  --axfm-components-bar-chart-height: 18px;
+  --axfm-components-bar-chart-rounded: 9999px;
+  --axfm-components-table-head-border: #E2E5E9;
+  --axfm-components-table-row-border: #E2E5E9;
+  --axfm-components-table-cell-padding: 9px 12px;
 }
