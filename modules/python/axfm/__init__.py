@@ -1,4 +1,4 @@
-# AXFM-MODULE python v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+# AXFM-MODULE python v2.2.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 # 공통 함수 라이브러리 + 연동 함수 문서 로더. 서버 없음 — 비실시간 스냅샷/문서 기반.
 # 명세: 플러그인 docs/protocol.md v2
 """AXFM 파이썬 연동 라이브러리.
@@ -21,7 +21,7 @@ from .registry import (
     list_neighbors,
     register_self,
 )
-from .interop import write_shared, read_shared, read_from, load_interface, neighbors
+from .interop import write_shared, read_shared, read_from, load_interface, neighbors, overview
 from .common import now_iso, fmt_date, fmt_datetime, pick_rotating
 
 __all__ = [
@@ -45,6 +45,7 @@ __all__ = [
     "read_from",
     "load_interface",
     "neighbors",
+    "overview",
     "now_iso",
     "fmt_date",
     "fmt_datetime",

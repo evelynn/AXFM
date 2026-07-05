@@ -1,9 +1,9 @@
-// AXFM-MODULE nextjs v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+// AXFM-MODULE nextjs v2.2.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 // 공통 함수 라이브러리 + 연동 함수 문서 로더. 서버 없음 — 비실시간 스냅샷/문서 기반. 명세: docs/protocol.md v2
 import { readFileSync, writeFileSync, mkdirSync, renameSync, existsSync } from "node:fs";
 import { join, resolve, sep } from "node:path";
 import { loadManifest } from "./manifest";
-import { getEntry, listNeighbors } from "./registry";
+import { getEntry, listNeighbors, readRegistry } from "./registry";
 import { makeEnvelope, validateEnvelope, sanitizeName, assertValidName, STALE_AFTER_MS, type Envelope, type RegistryEntry } from "./types";
 
 const dataDir = (root: string) => join(root, ".axfm", "data");
@@ -47,6 +47,58 @@ export function readFrom<T = unknown>(solutionId: string, name: string): Envelop
 /** 이 PC의 다른 솔루션 목록 */
 export function neighbors(): RegistryEntry[] {
   return listNeighbors(loadManifest().id);
+}
+
+/** 솔루션 1개의 현황 — overview() 의 반환 단위 */
+export interface SolutionStatus {
+  id: string;
+  name: string;
+  type: string;
+  path: string;
+  alive: boolean;                 // 폴더 존재 여부 (이동/삭제 감지)
+  moduleVersion: string | null;   // vendored 모듈 버전 (드리프트 확인용)
+  provides: Array<{ name: string; ts: string | null; stale: boolean | null }>; // 스냅샷 신선도
+  accepts: string[];
+  error?: string;                 // manifest 읽기 실패 등
+}
+
+/**
+ * 이 PC 전체 솔루션의 종합 현황 — 현황판/모니터링 화면의 데이터 소스 (protocol §3).
+ * 집계는 코드가 하고 화면·요약만 앱이 만든다 (토큰 절약 원칙: 반복 집계를 LLM 에 시키지 않는다).
+ */
+export function overview(): SolutionStatus[] {
+  const out: SolutionStatus[] = [];
+  for (const entry of readRegistry()) {
+    const s: SolutionStatus = {
+      id: entry.id, name: entry.name, type: entry.type, path: entry.path,
+      alive: existsSync(entry.path), moduleVersion: null, provides: [], accepts: [],
+    };
+    if (s.alive) {
+      try {
+        const m = JSON.parse(readFileSync(join(entry.path, "axfm.json"), "utf8").replace(/^﻿/, ""));
+        const modFile = entry.type === "nextjs"
+          ? join(entry.path, "lib", "axfm", "types.ts")
+          : join(entry.path, "axfm", "types.py");
+        if (existsSync(modFile))
+          s.moduleVersion = readFileSync(modFile, "utf8").match(/AXFM-MODULE \S+ v([\d.]+)/)?.[1] ?? null;
+        s.accepts = Array.isArray(m.accepts) ? m.accepts : [];
+        for (const name of Array.isArray(m.provides) ? m.provides : []) {
+          let ts: string | null = null;
+          let stale: boolean | null = null;
+          try {
+            const env = JSON.parse(readFileSync(join(entry.path, ".axfm", "data", `${sanitizeName(name)}.json`), "utf8").replace(/^﻿/, ""));
+            ts = typeof env.ts === "string" ? env.ts : null;
+            if (ts) stale = Date.now() - Date.parse(ts) > STALE_AFTER_MS;
+          } catch { /* 스냅샷 미생성 — ts/stale null 유지 */ }
+          s.provides.push({ name, ts, stale });
+        }
+      } catch (e) {
+        s.error = (e as Error).message;
+      }
+    }
+    out.push(s);
+  }
+  return out;
 }
 
 /** 상대 interface.md 프론트매터 파싱 (연동 대상 탐색용) */

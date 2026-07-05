@@ -1,4 +1,4 @@
-# AXFM-MODULE python v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+# AXFM-MODULE python v2.2.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 # 공통 함수 라이브러리 + 연동 함수 문서 로더. 서버 없음 — 비실시간. 명세: docs/protocol.md v2
 from __future__ import annotations
 import json
@@ -6,7 +6,7 @@ import os
 import time
 from typing import Any, Optional
 from .manifest import load_manifest
-from .registry import get_entry, list_neighbors
+from .registry import get_entry, list_neighbors, read_registry
 from .types import make_envelope, validate_envelope, sanitize_name, assert_valid_name, parse_ts, STALE_AFTER_MS
 
 
@@ -75,6 +75,50 @@ def read_from(solution_id: str, name: str) -> dict:
 def neighbors() -> list:
     """이 PC의 다른 솔루션 목록."""
     return list_neighbors(load_manifest()["id"])
+
+
+def overview() -> list:
+    """이 PC 전체 솔루션의 종합 현황 — 현황판/모니터링 화면의 데이터 소스 (protocol §3).
+
+    반환 항목: {id, name, type, path, alive, moduleVersion,
+               provides: [{name, ts, stale}], accepts: [...], error?}
+    집계는 코드가 하고 화면·요약만 앱이 만든다 (토큰 절약 원칙).
+    """
+    import re
+    out = []
+    for entry in read_registry():
+        s = {
+            "id": entry.get("id"), "name": entry.get("name"), "type": entry.get("type"),
+            "path": entry.get("path", ""), "alive": os.path.isdir(entry.get("path", "")),
+            "moduleVersion": None, "provides": [], "accepts": [],
+        }
+        if s["alive"]:
+            try:
+                with open(os.path.join(s["path"], "axfm.json"), "r", encoding="utf-8-sig") as f:
+                    m = json.load(f)
+                mod = (os.path.join(s["path"], "lib", "axfm", "types.ts") if s["type"] == "nextjs"
+                       else os.path.join(s["path"], "axfm", "types.py"))
+                if os.path.isfile(mod):
+                    with open(mod, "r", encoding="utf-8-sig") as f:
+                        found = re.search(r"AXFM-MODULE \S+ v([\d.]+)", f.read())
+                    s["moduleVersion"] = found.group(1) if found else None
+                s["accepts"] = m.get("accepts") if isinstance(m.get("accepts"), list) else []
+                for name in (m.get("provides") if isinstance(m.get("provides"), list) else []):
+                    ts, stale = None, None
+                    try:
+                        with open(os.path.join(s["path"], ".axfm", "data", f"{sanitize_name(name)}.json"),
+                                  "r", encoding="utf-8-sig") as f:
+                            env = json.load(f)
+                        ts = env.get("ts") if isinstance(env.get("ts"), str) else None
+                        if ts:
+                            stale = (time.time() - parse_ts(ts).timestamp()) * 1000 > STALE_AFTER_MS
+                    except (OSError, ValueError):
+                        pass  # 스냅샷 미생성 — ts/stale None 유지
+                    s["provides"].append({"name": name, "ts": ts, "stale": stale})
+            except (OSError, ValueError) as e:
+                s["error"] = str(e)
+        out.append(s)
+    return out
 
 
 def load_interface(solution_id: str) -> Optional[dict]:

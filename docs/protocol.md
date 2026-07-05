@@ -98,6 +98,7 @@ accepts:
 | `readFrom(solutionId, name)` | 레지스트리에서 상대 경로를 찾아 상대의 `.axfm/data/{name}.json`을 읽음 (비실시간 스냅샷) |
 | `loadInterface(solutionId)` | 상대 interface.md의 프론트매터를 파싱해 반환 (연동 대상 탐색용) |
 | `neighbors()` | 레지스트리의 다른 솔루션 목록 |
+| `overview()` | **이 PC 전체 솔루션의 종합 현황** — 생존 여부·모듈 버전·스냅샷 신선도·provides/accepts 를 한 번에 반환. 현황판·시스템 모니터링 솔루션의 표준 데이터 소스 (집계는 코드가, 화면·요약만 앱이) |
 | 기타 유틸 | 표준 봉투 생성/검증, ISO 타임스탬프, 안전 파일명 등 |
 
 - **데이터 이름 규칙**: `^[a-z0-9]+(-[a-z0-9]+)*$` (최대 64자, 예: daily-report). 위반은 무음 축약이 아니라

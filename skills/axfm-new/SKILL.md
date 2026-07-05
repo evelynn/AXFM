@@ -33,6 +33,7 @@ node "${CLAUDE_PLUGIN_ROOT}/scripts/scaffold.mjs" --type <nextjs|python> --id <i
 - 출력 JSON의 `ok: true`와 `port`(웹앱)를 확인한다. 실패하면 오류 메시지를 그대로 사용자에게 보여주고 원인(대상 폴더 비어있지 않음 / id 충돌 등)을 설명한다.
 
 ## 4단계: 첫 실행 안내 (딱 이 두 가지만 — 명령은 한 줄씩, `&&` 금지: 기본 PowerShell 5.1 비호환)
+- 사용자가 터미널이 어려워 보이면 "제가 대신 실행할까요?" 제안 → dev 서버는 백그라운드로 실행하고 브라우저 주소만 안내.
 - 웹앱: `cd <대상>` → `npm install` → `npm run dev` → "브라우저에서 http://localhost:<port> 를 여세요" (port 는 scaffold 출력값)
   - npm 설치가 사내망에서 막히면 `/axfm-guide`가 진단하도록 안내.
 - 스크립트: `cd <대상>` → `.\start.ps1` (막히면 `.\start.cmd`)

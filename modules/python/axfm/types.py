@@ -1,4 +1,4 @@
-# AXFM-MODULE python v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+# AXFM-MODULE python v2.2.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 from __future__ import annotations
 import re
 from datetime import datetime, timezone

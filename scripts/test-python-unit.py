@@ -86,6 +86,12 @@ with tempfile.TemporaryDirectory() as home, tempfile.TemporaryDirectory() as pro
         head = f.read(3)
     check("BOM 없는 UTF-8", head != b"\xef\xbb\xbf", extra=repr(head))
 
+    # overview — 종합 현황 데이터 소스 (현황판/모니터링용 공통 함수)
+    registry.register_self(root=proj)
+    ov = interop.overview()
+    check("overview 항목 수", len(ov) == 1, extra=str(len(ov)))
+    check("overview alive/기본 필드", ov[0]["alive"] is True and ov[0]["id"] == "sol-a" and ov[0]["provides"] == [] and ov[0]["accepts"] == [])
+
     # 레지스트리 손상 구분
     reg_path = registry.registry_path()
     os.makedirs(os.path.dirname(reg_path), exist_ok=True)

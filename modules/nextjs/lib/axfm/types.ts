@@ -1,4 +1,4 @@
-// AXFM-MODULE nextjs v2.1.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
+// AXFM-MODULE nextjs v2.2.0 — framework 소유 (직접 수정하지 마세요. 업데이트: /axfm-guide)
 // 연동 규약 명세: 플러그인 docs/protocol.md (v2 — 문서·함수 중심, 비실시간)
 
 /** 규약 major 버전 — 봉투/manifest/interface의 axfm 필드와 비교 */
