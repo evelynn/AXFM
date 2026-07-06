@@ -1,6 +1,6 @@
 # 릴리스 절차 (관리자용)
 
-> 배포 채널: **github.com/evelynn/AXFM** (marketplace `hansol-axfm`). 사용자는 풀 방식으로 수신하므로
+> 배포 채널: **github.com/evelynn/AXFM** (marketplace `axfm`). 사용자는 풀 방식으로 수신하므로
 > 릴리스는 "태그 + 공지"까지가 한 세트다. 아래 순서를 건너뛰지 않는다.
 
 ## 1. 버전 3축 올리기 (일관성 필수 — 게이트가 검사함)
@@ -39,8 +39,8 @@ git push origin vX.Y.Z
 ```
 [AXFM vX.Y.Z 배포] <한 줄 요약>
 업데이트 (터미널에서 한 줄씩):
-  claude plugin marketplace update hansol-axfm
-  claude plugin update axfm@hansol-axfm --scope project   ← 작업 폴더에서
+  claude plugin marketplace update axfm
+  claude plugin update axfm@axfm --scope project   ← 작업 폴더에서
   Claude Code 재시작
 그다음 각 솔루션 폴더에서 /axfm-guide 실행 → 모듈 업데이트가 있으면 재동기화를 안내합니다.
 변경 내역: CHANGELOG.md 참조
@@ -51,9 +51,9 @@ git push origin vX.Y.Z
 사용자에게 직전 태그로 재설치를 공지한다:
 
 ```
-claude plugin marketplace remove hansol-axfm
+claude plugin marketplace remove axfm
 claude plugin marketplace add evelynn/AXFM@v<직전태그>   ← 태그 고정 add 가 안 되는 CC 버전이면: 저장소를 revert 커밋 후 재태그
-claude plugin install axfm@hansol-axfm --scope project
+claude plugin install axfm@axfm --scope project
 ```
 
 저장소 쪽 표준 대응은 **revert 커밋 + 새 패치 태그**(이력 보존, force-push 금지).

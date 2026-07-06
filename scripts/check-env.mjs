@@ -46,7 +46,7 @@ if (nodeOk) {
 const mkts = run("claude", ["plugin", "marketplace", "list"]) !== null
   ? spawnSync("claude", ["plugin", "marketplace", "list"], { encoding: "utf8" }).stdout
   : "";
-add("AXFM 마켓플레이스(hansol-axfm)", /hansol-axfm/.test(mkts), /hansol-axfm/.test(mkts) ? "등록됨" : "미등록 — claude plugin marketplace add evelynn/AXFM");
+add("AXFM 마켓플레이스(axfm)", /\baxfm\b/.test(mkts), /\baxfm\b/.test(mkts) ? "등록됨" : "미등록 — claude plugin marketplace add evelynn/AXFM");
 
 // 작업 환경 주의 신호 (필수 아님)
 const home = homedir();

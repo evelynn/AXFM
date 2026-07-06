@@ -14,7 +14,7 @@
 ## 팀원 실측 시나리오 (스톱워치)
 | 단계 | 명령 | 통과 기준 |
 |---|---|---|
-| 1. 플러그인 설치 | `claude plugin marketplace add evelynn/AXFM` → 작업 폴더에서 `claude plugin install axfm@hansol-axfm --scope project` | 그 폴더의 `claude` 에서 `/axfm-` 입력 시 스킬 목록 표시 (**다른 폴더에서는 안 보여야 정상**) |
+| 1. 플러그인 설치 | `claude plugin marketplace add evelynn/AXFM` → 작업 폴더에서 `claude plugin install axfm@axfm --scope project` | 그 폴더의 `claude` 에서 `/axfm-` 입력 시 스킬 목록 표시 (**다른 폴더에서는 안 보여야 정상**) |
 | 2. 솔루션 생성 | `/axfm-new` (질문 3개 + 확인 1번) | `ok: true` + 폴더 생성 |
 | 3. 실행·확인 | 웹앱 `npm run dev` / 스크립트 `.\start.ps1` | 화면/출력 확인 |
 | 4. 가이드 | `/axfm-guide` | 여정 게이지 + 다음 행동 1개 |

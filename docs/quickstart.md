@@ -16,7 +16,7 @@
 ```
 claude plugin marketplace add evelynn/AXFM
 cd <작업 폴더>
-claude plugin install axfm@hansol-axfm --scope project
+claude plugin install axfm@axfm --scope project
 ```
 > 플러그인은 **이 폴더에서만 켜집니다** (다른 프로젝트를 어지럽히지 않아요).
 > 이 화면이 보여야 정상: 그 폴더에서 `claude` 실행 후 `/axfm-` 을 입력하면 axfm-new, axfm-guide … 목록이 뜹니다.

@@ -1,10 +1,10 @@
 {
-  "name": "hansol-axfm",
+  "name": "axfm",
   "owner": {
-    "name": "Hansol AXFM Team"
+    "name": "AXFM Team"
   },
   "metadata": {
-    "description": "Hansol 사내 바이브 코딩 프레임워크 배포 채널 — 솔루션 생성·연동·가이드 플러그인(axfm)을 제공합니다."
+    "description": "범용 바이브 코딩 프레임워크 배포 채널 — 솔루션 생성·연동·가이드 플러그인(axfm)을 제공합니다."
   },
   "plugins": [
     {

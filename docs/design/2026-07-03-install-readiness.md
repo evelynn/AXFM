@@ -34,7 +34,7 @@
 - **DEC-8 버전·형상**: modules `2.0.0 → 2.0.1`(모듈 코드 변경), plugin `0.1.0 → 0.2.0`. git 저장소 초기화 +
   전체 커밋(배포 모델 성립 조건, P4).
 - **DEC-9 폴더 스코프 설치가 공식 경로** (2026-07-03 추가, 사용자 요구): 플러그인은 전역(user)이 아니라
-  **작업 폴더에만 적용**되도록 설치한다 — `claude plugin install axfm@hansol-axfm --scope project`
+  **작업 폴더에만 적용**되도록 설치한다 — `claude plugin install axfm@axfm --scope project`
   (프로젝트의 `.claude/settings.json` 에 `enabledPlugins` 기록, 팀 공유 가능. 개인 한정은 `--scope local`).
   스코프 우선순위는 local > project > user. `/axfm-new` 스캐폴더가 새 솔루션 폴더에
   `.claude/settings.json`(폴더 스코프 활성화)을 자동 생성하며, 이 파일은 git 에 커밋되어 팀원 clone 시

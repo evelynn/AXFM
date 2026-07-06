@@ -174,7 +174,7 @@ const claudeDir = join(dest, ".claude");
 mkdirSync(claudeDir, { recursive: true });
 writeFileSync(
   join(claudeDir, "settings.json"),
-  JSON.stringify({ enabledPlugins: { "axfm@hansol-axfm": true } }, null, 2),
+  JSON.stringify({ enabledPlugins: { "axfm@axfm": true } }, null, 2),
   "utf8",
 );
 

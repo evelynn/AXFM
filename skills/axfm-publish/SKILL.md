@@ -31,7 +31,7 @@ node "${CLAUDE_PLUGIN_ROOT}/scripts/publish-check.mjs" --dest "<프로젝트 경
 1. git clone <주소>
 2. cd {폴더}
 3. (최초 1회) claude plugin marketplace add evelynn/AXFM
-   → claude plugin install axfm@hansol-axfm --scope project   ← 이 폴더에서만 켜집니다
+   → claude plugin install axfm@axfm --scope project   ← 이 폴더에서만 켜집니다
 4. (웹앱) npm install 그다음 npm run dev   /   (스크립트) .\start.ps1
 5. 같은 폴더에서 claude 실행 → /axfm-guide 입력  ← 자동으로 레지스트리에 등록되고 연동 준비 완료
 ```

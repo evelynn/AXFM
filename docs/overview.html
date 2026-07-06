@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hansol AXFM 안내서 — 설치 · 스킬 · 기능</title>
+<title>AXFM 안내서 — 설치 · 스킬 · 기능</title>
 <style>
   /* AXFM 표준 디자인 v1.0 토큰 (design/DESIGN.md) */
   :root {
@@ -56,7 +56,7 @@
 <div class="container">
 
   <div class="row">
-    <h1>Hansol AXFM</h1>
+    <h1>AXFM</h1>
     <span class="badge blue">v0.2.0</span>
     <span class="badge green">디자인 표준 v1.0</span>
   </div>
@@ -73,7 +73,7 @@
 
     <h3>② 작업 폴더에서 설치</h3>
     <pre><code>cd &lt;작업 폴더&gt;
-claude plugin install axfm@hansol-axfm --scope project</code></pre>
+claude plugin install axfm@axfm --scope project</code></pre>
 
     <div class="callout">
       <strong>폴더 스코프</strong> — 플러그인은 설치한 폴더에서만 켜집니다. 다른 프로젝트에는
@@ -157,7 +157,7 @@ claude plugin install axfm@hansol-axfm --scope project</code></pre>
     <h2>7. 팀원이 내 솔루션을 받는 법</h2>
     <ol class="steps">
       <li><div><span class="mono">git clone &lt;주소&gt;</span> → <span class="mono">cd &lt;폴더&gt;</span></div></li>
-      <li><div>(최초 1회) <span class="mono">claude plugin marketplace add evelynn/AXFM</span> → <span class="mono">claude plugin install axfm@hansol-axfm --scope project</span></div></li>
+      <li><div>(최초 1회) <span class="mono">claude plugin marketplace add evelynn/AXFM</span> → <span class="mono">claude plugin install axfm@axfm --scope project</span></div></li>
       <li><div>실행 — 웹앱 <span class="mono">npm install</span> 그다음 <span class="mono">npm run dev</span> / 스크립트 <span class="mono">.\start.ps1</span></div></li>
       <li><div>같은 폴더에서 <span class="mono">claude</span> → <span class="mono">/axfm-guide</span> — 자동으로 등록되고 연동 준비 완료</div></li>
     </ol>
@@ -170,7 +170,7 @@ claude plugin install axfm@hansol-axfm --scope project</code></pre>
     <div class="table-wrap">
     <table>
       <tr><th>증상</th><th>해결</th></tr>
-      <tr><td><span class="mono">/axfm-</span> 명령이 안 뜸</td><td>활성화된 <strong>폴더 안에서</strong> 실행 중인지 확인 → 그 폴더에서 <span class="mono">claude plugin install axfm@hansol-axfm --scope project</span> 후 재시작</td></tr>
+      <tr><td><span class="mono">/axfm-</span> 명령이 안 뜸</td><td>활성화된 <strong>폴더 안에서</strong> 실행 중인지 확인 → 그 폴더에서 <span class="mono">claude plugin install axfm@axfm --scope project</span> 후 재시작</td></tr>
       <tr><td><span class="mono">npm install</span> 이 403/멈춤</td><td>사내망 차단 — 관리자에게 사내 레지스트리 주소를 받아 <span class="mono">.npmrc</span> 설정, 또는 우선 Python 스크립트로 시작</td></tr>
       <tr><td><span class="mono">.ps1</span> 실행 차단</td><td><span class="mono">.\start.cmd</span> 사용</td></tr>
       <tr><td>이웃 솔루션이 안 보임</td><td>상대 폴더에서 한 번 실행하거나 <span class="mono">/axfm-guide</span> 실행(자동 등록)</td></tr>
@@ -180,7 +180,7 @@ claude plugin install axfm@hansol-axfm --scope project</code></pre>
   </div>
 
   <footer>
-    Hansol AXFM · 플러그인 v0.2.0 · 공통 모듈 v2.0.1 · 디자인 표준 v1.0 (2026-07-03 확정)<br>
+    AXFM · 플러그인 v0.2.0 · 공통 모듈 v2.0.1 · 디자인 표준 v1.0 (2026-07-03 확정)<br>
     상세 문서: docs/quickstart.md · docs/protocol.md · docs/purpose.md · docs/troubleshooting.md
   </footer>
 
