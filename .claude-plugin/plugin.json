@@ -1,6 +1,6 @@
 {
   "name": "axfm",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "AXFM — 범용 바이브 코딩 프레임워크. 시작하려면 /axfm-guide 를 입력하세요. 솔루션 생성·표준 연동·개발 가이드 스킬을 제공합니다.",
   "author": {
     "name": "AXFM Team"
